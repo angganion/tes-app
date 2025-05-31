@@ -174,6 +174,9 @@ export default function FuturisticPortfolio() {
             <h2 className="text-3xl md:text-5xl font-light text-gray-300 mb-8 tracking-widest">
               ANGGORO
             </h2>
+            <h3 className="text-2xl md:text-3xl font-medium mb-8 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Information Systems <span className="text-gray-400">@</span> Universitas Indonesia
+            </h3>
           </div>
           
           <div className="relative mb-12">
