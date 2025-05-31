@@ -16,7 +16,6 @@ export default function FuturisticPortfolio() {
     { category: "Mobile Development", items: ["Flutter"], icon: "📱" },
     { category: "Blockchain", items: ["Internet Computer (ICP)", "Sui Blockchain", "Smart Contracts", "Solidity"], icon: "⛓️" },
     { category: "Database", items: ["PostgreSQL", "MongoDB", "MySQL"], icon: "🗄️" },
-    { category: "Tools & Others", items: ["Git/GitHub", "Docker", "RESTful APIs", "CI/CD", "Agile Methodologies"], icon: "🛠️" },
     { category: "Specialized Skills", items: ["Computer Vision", "Embedded Systems", "Robotics", "IoT Development"], icon: "🤖" }
   ];
 
