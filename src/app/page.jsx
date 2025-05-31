@@ -171,12 +171,16 @@ export default function FuturisticPortfolio() {
             <h1 className="text-7xl md:text-9xl font-black mb-6 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
               WAHYU RIDHO
             </h1>
-            <h2 className="text-3xl md:text-5xl font-light text-gray-300 mb-8 tracking-widest">
+            <h2 className="text-3xl md:text-5xl font-light text-gray-300 mb-4 tracking-widest">
               ANGGORO
             </h2>
-            <h3 className="text-2xl md:text-3xl font-medium mb-8 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Information Systems <span className="text-gray-400">@</span> Universitas Indonesia
-            </h3>
+            <div className="flex flex-col items-center space-y-2 mb-8">
+              <div className="flex items-center gap-3 px-6 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-purple-500/10 backdrop-blur-sm border border-cyan-500/20">
+                <span className="text-lg md:text-xl tracking-wider bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Information Systems</span>
+                <span className="text-cyan-400/50">•</span>
+                <span className="text-lg md:text-xl tracking-wider bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Universitas Indonesia</span>
+              </div>
+            </div>
           </div>
           
           <div className="relative mb-12">
