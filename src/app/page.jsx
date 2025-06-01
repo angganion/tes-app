@@ -174,15 +174,6 @@ export default function RainbowDashPortfolio() {
       </div>
 
       {/* Main Content Container with 75% Zoom */}
-      <div 
-        className="relative z-10 transform-gpu transition-transform duration-300"
-        style={{ 
-          transform: 'scale(0.75)',
-          transformOrigin: 'center center',
-          marginTop: '-62rem',
-          marginBottom: '-62rem'
-        }}
-      >
         {/* Hero Section */}
         <section className="min-h-screen flex items-center justify-center relative pt-20">
           <div className="text-center z-10 max-w-4xl mx-auto px-6">
@@ -823,7 +814,7 @@ export default function RainbowDashPortfolio() {
             </div>
           </div>
         </section>
-      </div>
+      
 
       {/* Footer */}
       <footer className="py-12 relative">
