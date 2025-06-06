@@ -198,9 +198,13 @@ export default function RainbowDashPortfolio() {
                 />
               </div>
               
-              {/* Lightning bolt decorations */}
-              <div className="flex justify-center mb-6">
-                <span className="text-6xl animate-bounce text-yellow-400">⚡</span>
+              {/* Flying animation */}
+              <div className="flex justify-center mb-6 relative h-16 overflow-hidden">
+                <img 
+                  src="/terbang.gif" 
+                  alt="Flying" 
+                  className="w-24 h-24 object-contain absolute animate-fly"
+                />
               </div>
               
               <h1 className="text-7xl md:text-9xl font-black mb-6 bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent animate-rainbow">
@@ -251,6 +255,14 @@ export default function RainbowDashPortfolio() {
             </h2>
             <div className="max-w-4xl mx-auto">
               <div className="bg-white/40 backdrop-blur-xl border border-blue-300/30 rounded-3xl p-8 shadow-2xl relative">
+                <div className="absolute -left-1 -top-23">
+                  <img 
+                    src="/rb5.png" 
+                    alt="Rainbow Dash 5" 
+                    className="w-28 h-28 object-contain"
+                    style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))' }}
+                  />
+                </div>
                 <div className="absolute -right-32 top-1/2 transform -translate-y-1/2">
                   <img 
                     src="/rainbow-dash-2.png" 
@@ -347,14 +359,13 @@ export default function RainbowDashPortfolio() {
           </div>
         </section>
 
-        {/* Work Experience Section */}
+        {/* Work Experience Section - Commented Out
         <section id="experience" className="py-20 relative">
           <div className="container mx-auto px-6">
             <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
               Work Experience ☁️
             </h2>
             <div className="max-w-4xl mx-auto space-y-8 relative">
-              {/* Rainbow Dash 3 */}
               <div className="absolute -left-40 -top-20 z-10">
                 <img 
                   src="/rainbow-dash-3.png" 
@@ -368,11 +379,9 @@ export default function RainbowDashPortfolio() {
                   key={index}
                   className="group relative bg-white/30 backdrop-blur-xl border-2 border-pink-300/40 rounded-3xl p-8 hover:bg-white/40 hover:border-purple-400/60 transition-all duration-700 shadow-2xl hover:shadow-pink-300/50 hover:scale-105 transform"
                 >
-                  {/* Sparkle Effects */}
                   <div className="absolute -top-2 -right-2 text-2xl animate-spin group-hover:animate-pulse">✨</div>
                   <div className="absolute -bottom-2 -left-2 text-xl animate-bounce group-hover:animate-spin">⭐</div>
                   
-                  {/* Rainbow Border Animation */}
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-red-400 via-yellow-400 via-green-400 via-blue-400 to-purple-400 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
                   
                   <div className="relative z-10">
@@ -393,7 +402,6 @@ export default function RainbowDashPortfolio() {
               ))}
             </div>
             
-            {/* Bottom Decoration */}
             <div className="text-center mt-16">
               <div className="text-4xl space-x-4 animate-bounce">
                 💼 🎓 ⭐ ✨ 🌟 🎯 🔮
@@ -404,10 +412,10 @@ export default function RainbowDashPortfolio() {
             </div>
           </div>
         </section>
+        */}
 
-        {/* Related Courses Section - My Little Pony Theme */}
+        {/* Related Courses Section - Commented Out
         <section id="courses" className="py-20 relative overflow-hidden">
-          {/* Magical Background Elements */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-10 left-10 text-6xl animate-bounce">🌈</div>
             <div className="absolute top-20 right-20 text-4xl animate-pulse">⭐</div>
@@ -418,7 +426,6 @@ export default function RainbowDashPortfolio() {
             <div className="absolute bottom-1/3 left-1/2 text-4xl animate-pulse">🌺</div>
           </div>
 
-          {/* Floating Clouds */}
           <div className="absolute top-10 left-1/2 w-20 h-12 bg-white/60 rounded-full animate-float"></div>
           <div className="absolute top-32 right-1/4 w-16 h-10 bg-white/40 rounded-full animate-float-delayed"></div>
           
@@ -435,7 +442,6 @@ export default function RainbowDashPortfolio() {
                   key={index} 
                   className="group relative bg-white/30 backdrop-blur-xl border-2 border-pink-300/40 rounded-3xl p-8 hover:bg-white/40 hover:border-purple-400/60 transition-all duration-700 shadow-2xl hover:shadow-pink-300/50 hover:scale-105 transform"
                 >
-                  {/* Enhanced Cloud Corner Effects */}
                   <div className="absolute -top-4 -right-4 flex flex-col items-end">
                     <div className="text-3xl animate-cloud-slide opacity-80">☁️</div>
                     <div className="text-2xl animate-cloud-slide-delayed opacity-60 -mt-2">☁️</div>
@@ -447,7 +453,6 @@ export default function RainbowDashPortfolio() {
                     <div className="text-xl animate-cloud-slide-reverse-delayed-2 opacity-40 -mt-2">☁️</div>
                   </div>
                   
-                  {/* Rainbow Border Animation */}
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-red-400 via-yellow-400 via-green-400 via-blue-400 to-purple-400 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
                   
                   <div className="relative z-10">
@@ -473,7 +478,6 @@ export default function RainbowDashPortfolio() {
               ))}
             </div>
             
-            {/* Bottom Decoration */}
             <div className="text-center mt-16">
               <div className="text-4xl space-x-4 animate-bounce">
                 ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️
@@ -483,262 +487,10 @@ export default function RainbowDashPortfolio() {
               </p>
             </div>
           </div>
-
-          {/* Custom CSS Animations - Add this to your global CSS or Tailwind config */}
-          <style dangerouslySetInnerHTML={{
-            __html: `
-              @keyframes float {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-20px); }
-              }
-              
-              @keyframes float-delayed {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-15px); }
-              }
-              
-              .animate-float {
-                animation: float 6s ease-in-out infinite;
-              }
-              
-              .animate-float-delayed {
-                animation: float-delayed 8s ease-in-out infinite;
-                animation-delay: 2s;
-              }
-              
-              .animation-delay-100 {
-                animation-delay: 0.1s;
-              }
-              
-              .animation-delay-200 {
-                animation-delay: 0.2s;
-              }
-
-              @keyframes cloud-slide {
-                0% { 
-                  transform: translateX(100%);
-                  opacity: 0;
-                }
-                20% {
-                  opacity: 1;
-                }
-                80% {
-                  opacity: 1;
-                }
-                100% { 
-                  transform: translateX(-100%);
-                  opacity: 0;
-                }
-              }
-
-              @keyframes cloud-slide-reverse {
-                0% { 
-                  transform: translateX(-100%);
-                  opacity: 0;
-                }
-                20% {
-                  opacity: 1;
-                }
-                80% {
-                  opacity: 1;
-                }
-                100% { 
-                  transform: translateX(100%);
-                  opacity: 0;
-                }
-              }
-
-              @keyframes cloud-slide-delayed {
-                0% { 
-                  transform: translateX(100%);
-                  opacity: 0;
-                }
-                20% {
-                  opacity: 0.6;
-                }
-                80% {
-                  opacity: 0.6;
-                }
-                100% { 
-                  transform: translateX(-100%);
-                  opacity: 0;
-                }
-              }
-
-              @keyframes cloud-slide-delayed-2 {
-                0% { 
-                  transform: translateX(100%);
-                  opacity: 0;
-                }
-                20% {
-                  opacity: 0.4;
-                }
-                80% {
-                  opacity: 0.4;
-                }
-                100% { 
-                  transform: translateX(-100%);
-                  opacity: 0;
-                }
-              }
-
-              @keyframes cloud-slide-reverse-delayed {
-                0% { 
-                  transform: translateX(-100%);
-                  opacity: 0;
-                }
-                20% {
-                  opacity: 0.6;
-                }
-                80% {
-                  opacity: 0.6;
-                }
-                100% { 
-                  transform: translateX(100%);
-                  opacity: 0;
-                }
-              }
-
-              @keyframes cloud-slide-reverse-delayed-2 {
-                0% { 
-                  transform: translateX(-100%);
-                  opacity: 0;
-                }
-                20% {
-                  opacity: 0.4;
-                }
-                80% {
-                  opacity: 0.4;
-                }
-                100% { 
-                  transform: translateX(100%);
-                  opacity: 0;
-                }
-              }
-
-              .animate-cloud-slide-delayed {
-                animation: cloud-slide-delayed 4s linear infinite;
-                animation-delay: 0.5s;
-              }
-
-              .animate-cloud-slide-delayed-2 {
-                animation: cloud-slide-delayed-2 4s linear infinite;
-                animation-delay: 1s;
-              }
-
-              .animate-cloud-slide-reverse-delayed {
-                animation: cloud-slide-reverse-delayed 4s linear infinite;
-                animation-delay: 0.5s;
-              }
-
-              .animate-cloud-slide-reverse-delayed-2 {
-                animation: cloud-slide-reverse-delayed-2 4s linear infinite;
-                animation-delay: 1s;
-              }
-            `
-          }} />
         </section>
+        */}
 
-        {/* Projects Section */}
-        <section id="projects" className="py-20 relative">
-          <div className="container mx-auto px-6">
-            <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-              Featured Projects 🌈
-            </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto relative">
-              {/* Rainbow Dash 4 - Left */}
-              <div className="absolute -left-40 -top-20 z-10">
-                <img 
-                  src="/rainbow-dash-4.png" 
-                  alt="Rainbow Dash 4" 
-                  className="w-48 h-48 object-contain animate-float-medium"
-                  style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))' }}
-                />
-              </div>
-              {/* Rainbow Dash 4 - Right */}
-              <div className="absolute -right-40 top-20 z-10">
-                <img 
-                  src="/rainbow-dash-4.png" 
-                  alt="Rainbow Dash 4" 
-                  className="w-48 h-48 object-contain animate-float-medium scale-x-[-1]"
-                  style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))' }}
-                />
-              </div>
-              {/* Rainbow Dash 4 - Bottom Left */}
-              <div className="absolute -left-32 bottom-20 z-10">
-                <img 
-                  src="/rainbow-dash-4.png" 
-                  alt="Rainbow Dash 4" 
-                  className="w-40 h-40 object-contain animate-float-slow"
-                  style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))' }}
-                />
-              </div>
-              {/* Rainbow Dash 4 - Bottom Right */}
-              <div className="absolute -right-32 bottom-10 z-10">
-                <img 
-                  src="/rainbow-dash-4.png" 
-                  alt="Rainbow Dash 4" 
-                  className="w-40 h-40 object-contain animate-float-slow scale-x-[-1]"
-                  style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))' }}
-                />
-              </div>
-              {projects.map((project, index) => (
-                <div 
-                  key={project.title}
-                  className="group relative bg-white/30 backdrop-blur-xl border-2 border-pink-300/40 rounded-3xl p-8 hover:bg-white/40 hover:border-purple-400/60 transition-all duration-700 shadow-2xl hover:shadow-pink-300/50 hover:scale-105 transform"
-                >
-                  {/* Sparkle Effects */}
-                  <div className="absolute -top-2 -right-2 text-2xl animate-spin group-hover:animate-pulse">✨</div>
-                  <div className="absolute -bottom-2 -left-2 text-xl animate-bounce group-hover:animate-spin">⭐</div>
-                  
-                  {/* Rainbow Border Animation */}
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-red-400 via-yellow-400 via-green-400 via-blue-400 to-purple-400 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
-                  
-                  <div className="relative z-10">
-                    <h3 className="text-2xl font-bold mb-4 text-purple-800 group-hover:text-pink-700 transition-colors flex items-center gap-2">
-                      <span className="text-3xl animate-bounce">⚡</span>
-                      {project.title}
-                    </h3>
-                  
-                  <p className="text-gray-700 mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
-                  
-                  <div className="mb-6">
-                      <span className="text-sm text-purple-700 font-mono bg-purple-200/50 px-3 py-1 rounded-full border border-purple-300/30 group-hover:bg-pink-200/50 group-hover:border-pink-300/30 transition-colors">
-                      {project.tech}
-                    </span>
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-3">
-                    {project.links.map((link, i) => (
-                      <a
-                        key={i}
-                        href={link.url}
-                        className="px-4 py-2 bg-white/40 border border-blue-300/30 rounded-full text-sm font-medium hover:bg-blue-200/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-105 text-blue-700 shadow-sm"
-                      >
-                        🌈 {link.label}
-                      </a>
-                    ))}
-                  </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            {/* Bottom Decoration */}
-            <div className="text-center mt-16">
-              <div className="text-4xl space-x-4 animate-bounce">
-                🚀 💫 ⚡ ✨ 🌟 🎯 🔮
-              </div>
-              <p className="mt-4 text-purple-600 font-semibold text-lg">
-                "Every project is a magical journey!" 💫
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Awards Section */}
+        {/* Awards Section - Commented Out
         <section id="honors" className="py-20 relative">
           <div className="container mx-auto px-6">
             <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
@@ -774,6 +526,7 @@ export default function RainbowDashPortfolio() {
             </div>
           </div>
         </section>
+        */}
 
         {/* Contact Section */}
         <section id="contact" className="py-20 relative">
