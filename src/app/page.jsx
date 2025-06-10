@@ -95,66 +95,6 @@ export default function RainbowDashPortfolio() {
     }
   ];
 
-  const courses = [
-    {
-      title: "Pemrograman Berbasis Platform (PBP)",
-      institution: "Universitas Indonesia",
-      description: "Advanced web and mobile development course covering modern frameworks, RESTful APIs, and best practices in software development."
-    },
-    {
-      title: "Struktur Data dan Algoritma",
-      institution: "Universitas Indonesia",
-      description: "Comprehensive study of data structures and algorithms, focusing on problem-solving techniques and computational efficiency."
-    },
-    {
-      title: "Basis Data (Basdat)",
-      institution: "Universitas Indonesia",
-      description: "Database management course covering design, implementation, optimization, and advanced database concepts."
-    },
-    {
-      title: "Computer Vision",
-      institution: "Universitas Indonesia",
-      description: "Study of image processing, pattern recognition, and computer vision algorithms for real-world applications."
-    },
-    {
-      title: "Embedded System",
-      institution: "Universitas Indonesia",
-      description: "Hands-on experience with microcontroller programming, real-time systems, and hardware-software integration."
-    },
-    {
-      title: "Robotika",
-      institution: "Universitas Indonesia",
-      description: "Study of robotics fundamentals, including control systems, sensors, actuators, and autonomous systems."
-    },
-    {
-      title: "Ethical Hacking",
-      institution: "Universitas Indonesia",
-      description: "Comprehensive study of cybersecurity, penetration testing, and ethical hacking methodologies."
-    },
-    {
-      title: "Arsitektur dan Pemrograman Aplikasi Perusahaan",
-      institution: "Universitas Indonesia",
-      description: "Enterprise application development focusing on software architecture, design patterns, and scalable solutions."
-    }
-  ];
-
-  const workExperience = [
-    {
-      title: "Teaching Assistant of Database",
-      company: "Faculty of Computer Science, Universitas Indonesia",
-      type: "Part-time",
-      period: "Jul 2024 – Present",
-      location: "Depok, West Java, Indonesia"
-    },
-    {
-      title: "Staff Akademis dan Pengajar",
-      company: "BETIS Fasilkom UI",
-      type: "Full-time",
-      period: "Dec 2022 – Mar 2023",
-      location: "Depok, West Java, Indonesia"
-    }
-  ];
-
   return (
     <div className={`min-h-screen bg-gradient-to-br from-sky-200 via-blue-100 to-indigo-200 text-gray-800 relative overflow-x-hidden transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
       {/* Animated Sky Background */}
@@ -359,174 +299,104 @@ export default function RainbowDashPortfolio() {
           </div>
         </section>
 
-        {/* Work Experience Section - Commented Out
-        <section id="experience" className="py-20 relative">
+        {/* Projects Section */}
+        <section id="projects" className="py-20 relative">
           <div className="container mx-auto px-6">
             <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-              Work Experience ☁️
+              Featured Projects 🌈
             </h2>
-            <div className="max-w-4xl mx-auto space-y-8 relative">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto relative">
+              {/* Rainbow Dash 4 - Left */}
               <div className="absolute -left-40 -top-20 z-10">
                 <img 
-                  src="/rainbow-dash-3.png" 
-                  alt="Rainbow Dash 3" 
+                  src="/rainbow-dash-4.png" 
+                  alt="Rainbow Dash 4" 
                   className="w-48 h-48 object-contain animate-float-medium"
                   style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))' }}
                 />
               </div>
-              {workExperience.map((job, index) => (
+              {/* Rainbow Dash 4 - Right */}
+              <div className="absolute -right-40 top-20 z-10">
+                <img 
+                  src="/rainbow-dash-4.png" 
+                  alt="Rainbow Dash 4" 
+                  className="w-48 h-48 object-contain animate-float-medium scale-x-[-1]"
+                  style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))' }}
+                />
+              </div>
+              {/* Rainbow Dash 4 - Bottom Left */}
+              <div className="absolute -left-32 bottom-20 z-10">
+                <img 
+                  src="/rainbow-dash-4.png" 
+                  alt="Rainbow Dash 4" 
+                  className="w-40 h-40 object-contain animate-float-slow"
+                  style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))' }}
+                />
+              </div>
+              {/* Rainbow Dash 4 - Bottom Right */}
+              <div className="absolute -right-32 bottom-10 z-10">
+                <img 
+                  src="/rainbow-dash-4.png" 
+                  alt="Rainbow Dash 4" 
+                  className="w-40 h-40 object-contain animate-float-slow scale-x-[-1]"
+                  style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))' }}
+                />
+              </div>
+              {projects.map((project, index) => (
                 <div 
-                  key={index}
+                  key={project.title}
                   className="group relative bg-white/30 backdrop-blur-xl border-2 border-pink-300/40 rounded-3xl p-8 hover:bg-white/40 hover:border-purple-400/60 transition-all duration-700 shadow-2xl hover:shadow-pink-300/50 hover:scale-105 transform"
                 >
+                  {/* Sparkle Effects */}
                   <div className="absolute -top-2 -right-2 text-2xl animate-spin group-hover:animate-pulse">✨</div>
                   <div className="absolute -bottom-2 -left-2 text-xl animate-bounce group-hover:animate-spin">⭐</div>
                   
+                  {/* Rainbow Border Animation */}
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-red-400 via-yellow-400 via-green-400 via-blue-400 to-purple-400 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
                   
                   <div className="relative z-10">
-                    <h3 className="text-xl font-bold text-purple-800 mb-2 group-hover:text-pink-700 transition-colors flex items-center gap-2">
-                      <span className="text-2xl animate-bounce">💼</span>
-                      {job.title}
+                    <h3 className="text-2xl font-bold mb-4 text-purple-800 group-hover:text-pink-700 transition-colors flex items-center gap-2">
+                      <span className="text-3xl animate-bounce">⚡</span>
+                      {project.title}
                     </h3>
-                    <p className="text-gray-700 mb-2 flex items-center gap-2">
-                      <span className="text-lg">🏢</span>
-                      {job.company} · {job.type}
-                    </p>
-                    <p className="text-gray-700 mb-2 flex items-center gap-2">
-                      <span className="text-lg">⏰</span>
-                      {job.period} · {job.location}
-                    </p>
+                  
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
+                  
+                  <div className="mb-6">
+                      <span className="text-sm text-purple-700 font-mono bg-purple-200/50 px-3 py-1 rounded-full border border-purple-300/30 group-hover:bg-pink-200/50 group-hover:border-pink-300/30 transition-colors">
+                      {project.tech}
+                    </span>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-3">
+                    {project.links.map((link, i) => (
+                      <a
+                        key={i}
+                        href={link.url}
+                        className="px-4 py-2 bg-white/40 border border-blue-300/30 rounded-full text-sm font-medium hover:bg-blue-200/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-105 text-blue-700 shadow-sm"
+                      >
+                        🌈 {link.label}
+                      </a>
+                    ))}
+                  </div>
                   </div>
                 </div>
               ))}
             </div>
             
+            {/* Bottom Decoration */}
             <div className="text-center mt-16">
               <div className="text-4xl space-x-4 animate-bounce">
-                💼 🎓 ⭐ ✨ 🌟 🎯 🔮
+                🚀 💫 ⚡ ✨ 🌟 🎯 🔮
               </div>
               <p className="mt-4 text-purple-600 font-semibold text-lg">
-                "Every experience is a magical opportunity!" 💫
+                "Every project is a magical journey!" 💫
               </p>
             </div>
           </div>
         </section>
-        */}
-
-        {/* Related Courses Section - Commented Out
-        <section id="courses" className="py-20 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-10 left-10 text-6xl animate-bounce">🌈</div>
-            <div className="absolute top-20 right-20 text-4xl animate-pulse">⭐</div>
-            <div className="absolute bottom-20 left-20 text-5xl animate-spin">🦄</div>
-            <div className="absolute bottom-10 right-10 text-3xl animate-bounce">🌸</div>
-            <div className="absolute top-1/2 left-1/4 text-4xl animate-pulse">☁️</div>
-            <div className="absolute top-1/3 right-1/3 text-3xl animate-bounce">🍄</div>
-            <div className="absolute bottom-1/3 left-1/2 text-4xl animate-pulse">🌺</div>
-          </div>
-
-          <div className="absolute top-10 left-1/2 w-20 h-12 bg-white/60 rounded-full animate-float"></div>
-          <div className="absolute top-32 right-1/4 w-16 h-10 bg-white/40 rounded-full animate-float-delayed"></div>
-          
-          <div className="container mx-auto px-6 relative z-10">
-            <h2 className="text-6xl font-bold text-center mb-4 bg-gradient-to-r from-pink-500 via-purple-500 via-blue-500 via-green-500 via-yellow-500 to-pink-500 bg-clip-text text-transparent">
-              ✨ Magical Learning Adventures ✨
-            </h2>
-            <p className="text-center text-lg text-purple-600 mb-16 font-semibold">
-            </p>
-            
-            <div className="max-w-4xl mx-auto space-y-8">
-              {courses.map((course, index) => (
-                <div 
-                  key={index} 
-                  className="group relative bg-white/30 backdrop-blur-xl border-2 border-pink-300/40 rounded-3xl p-8 hover:bg-white/40 hover:border-purple-400/60 transition-all duration-700 shadow-2xl hover:shadow-pink-300/50 hover:scale-105 transform"
-                >
-                  <div className="absolute -top-4 -right-4 flex flex-col items-end">
-                    <div className="text-3xl animate-cloud-slide opacity-80">☁️</div>
-                    <div className="text-2xl animate-cloud-slide-delayed opacity-60 -mt-2">☁️</div>
-                    <div className="text-xl animate-cloud-slide-delayed-2 opacity-40 -mt-2">☁️</div>
-                  </div>
-                  <div className="absolute -bottom-4 -left-4 flex flex-col items-start">
-                    <div className="text-3xl animate-cloud-slide-reverse opacity-80">☁️</div>
-                    <div className="text-2xl animate-cloud-slide-reverse-delayed opacity-60 -mt-2">☁️</div>
-                    <div className="text-xl animate-cloud-slide-reverse-delayed-2 opacity-40 -mt-2">☁️</div>
-                  </div>
-                  
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-red-400 via-yellow-400 via-green-400 via-blue-400 to-purple-400 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
-                  
-                  <div className="relative z-10">
-                    <h3 className="text-2xl font-bold text-purple-800 mb-3 flex items-center gap-2 group-hover:text-pink-700 transition-colors">
-                      {index % 4 === 0 && <span className="text-3xl">🌈</span>}
-                      {index % 4 === 1 && <span className="text-3xl">🦄</span>}
-                      {index % 4 === 2 && <span className="text-3xl">🌸</span>}
-                      {index % 4 === 3 && <span className="text-3xl">⭐</span>}
-                      {course.title}
-                      <span className="ml-auto text-xl animate-bounce">✨</span>
-                    </h3>
-                    
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="text-lg">🏰</span>
-                      <p className="text-purple-700 font-semibold text-lg">{course.institution}</p>
-                    </div>
-                    
-                    <div className="bg-white/50 rounded-2xl p-4 border border-pink-200">
-                      <p className="text-gray-800 leading-relaxed font-medium">{course.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <div className="text-center mt-16">
-              <div className="text-4xl space-x-4 animate-bounce">
-                ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️
-              </div>
-              <p className="mt-4 text-purple-600 font-semibold text-lg">
-                "Friendship is Magic, Learning is Adventure!" 💖
-              </p>
-            </div>
-          </div>
-        </section>
-        */}
-
-        {/* Awards Section - Commented Out
-        <section id="honors" className="py-20 relative">
-          <div className="container mx-auto px-6">
-            <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-              Achievements 🏆
-            </h2>
-            <div className="max-w-4xl mx-auto space-y-8">
-              <div className="bg-gradient-to-r from-yellow-200/40 via-orange-200/40 to-red-200/40 backdrop-blur-xl border border-yellow-400/30 rounded-2xl p-8 hover:border-yellow-500/50 transition-all duration-500 shadow-lg">
-                <div className="flex items-start gap-4">
-                  <div className="text-3xl">🏆</div>
-                  <div>
-                    <h3 className="text-xl font-bold text-yellow-700 mb-2">
-                      Winner Of MLH Web3Apps Hackathon session 2024 (19 - 21 January) in Security category
-                    </h3>
-                    <p className="text-gray-700 mb-2">Major League Hacking · Jan 2024</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-gradient-to-r from-purple-200/40 via-pink-200/40 to-red-200/40 backdrop-blur-xl border border-purple-400/30 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-500 shadow-lg">
-                <div className="flex items-start gap-4">
-                  <div className="text-3xl">🥇</div>
-                  <div>
-                    <h3 className="text-xl font-bold text-purple-700 mb-2">
-                      Top 5 Pengabdian Case 2022
-                    </h3>
-                    <p className="text-gray-700 mb-2">BEM Fakultas Ilmu Komputer, University of Indonesia · Dec 2022</p>
-                    <p className="text-gray-600 text-sm">
-                      Social Business IT Case Competition focusing on rebranding the recycling-based creative industry.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        */}
 
         {/* Contact Section */}
         <section id="contact" className="py-20 relative">
