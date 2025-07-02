@@ -164,229 +164,858 @@ const courses = [
   }
 ];
 
-function RustCodeBlock() {
-  // Compose the code as an array of lines for line numbers
-  const codeLines = [
-    [<span className="text-[#c792ea]">struct</span>, ' ', <span className="text-[#82aaff]">Developer</span>, ' {'],
-    [<span className="text-[#ffcb6b]">    name</span>, ': ', <span className="text-[#82aaff]">String</span>, ','],
-    [<span className="text-[#ffcb6b]">    role</span>, ': ', <span className="text-[#82aaff]">String</span>, ','],
-    [<span className="text-[#ffcb6b]">    location</span>, ': ', <span className="text-[#82aaff]">String</span>, ','],
-    [<span className="text-[#ffcb6b]">    skills</span>, ': ', <span className="text-[#82aaff]">Vec&lt;String&gt;</span>, ','],
-    [<span className="text-[#ffcb6b]">    tools</span>, ': ', <span className="text-[#82aaff]">Vec&lt;String&gt;</span>, ','],
-    [<span className="text-[#ffcb6b]">    interests</span>, ': ', <span className="text-[#82aaff]">Vec&lt;String&gt;</span>, ','],
-    ['}'],
-    [''],
-    [''],
-    ['\n'],
-    [<span className="text-[#c792ea]">let</span>, ' ', <span className="text-[#b6c2ef]">me</span>, ' = ', <span className="text-[#82aaff]">Developer</span>, ' {'],
-    [<span className="text-[#ffcb6b]">    name</span>, ': ', <span className="text-[#c3e88d]">"Wahyu Ridho Anggoro"</span>, ','],
-    [<span className="text-[#ffcb6b]">    role</span>, ': ', <span className="text-[#c3e88d]">"Backend Developer"</span>, ','],
-    [<span className="text-[#ffcb6b]">    location</span>, ': ', <span className="text-[#c3e88d]">"Depok, Indonesia"</span>, ','],
-    [<span className="text-[#ffcb6b]">    skills</span>, ': ', <span className="text-[#c792ea]">vec!</span>, '['],
-    [<span className="text-[#c3e88d]">        "JavaScript/TypeScript",</span>],
-    [<span className="text-[#c3e88d]">        "Python",</span>],
-    [<span className="text-[#c3e88d]">        "Java",</span>],
-    [<span className="text-[#c3e88d]">        "Dart",</span>],
-    [<span className="text-[#c3e88d]">        "C/C++",</span>],
-    [<span className="text-[#c3e88d]">        "Move",</span>],
-    [<span className="text-[#c3e88d]">        "Motoko",</span>],
-    [<span className="text-[#b6c2ef]">    ],</span>],
-    [<span className="text-[#ffcb6b]">    tools</span>, ': ', <span className="text-[#c792ea]">vec!</span>, '['],
-    [<span className="text-[#c3e88d]">        "PostgreSQL",</span>],
-    [<span className="text-[#c3e88d]">        "MongoDB",</span>],
-    [<span className="text-[#c3e88d]">        "MySQL",</span>],
-    [<span className="text-[#c3e88d]">        "Django",</span>],
-    [<span className="text-[#c3e88d]">        "Spring Boot",</span>],
-    [<span className="text-[#c3e88d]">        "Flutter",</span>],
-    [<span className="text-[#c3e88d]">        "React.js",</span>],
-    [<span className="text-[#c3e88d]">        "Next.js",</span>],
-    [<span className="text-[#c3e88d]">        "Vue.js",</span>],
-    [<span className="text-[#c3e88d]">        "Tailwind CSS",</span>],
-    [<span className="text-[#c3e88d]">        "Docker",</span>],
-    [<span className="text-[#c3e88d]">        "Git",</span>],
-    [<span className="text-[#b6c2ef]">    ],</span>],
-    [<span className="text-[#ffcb6b]">    interests</span>, ': ', <span className="text-[#c792ea]">vec!</span>, '['],
-    [<span className="text-[#c3e88d]">        "Distributed Systems",</span>],
-    [<span className="text-[#c3e88d]">        "API Design",</span>],
-    [<span className="text-[#c3e88d]">        "Microservices",</span>],
-    [<span className="text-[#c3e88d]">        "Blockchain",</span>],
-    [<span className="text-[#c3e88d]">        "Computer Vision",</span>],
-    [<span className="text-[#c3e88d]">        "Embedded Systems",</span>],
-    [<span className="text-[#c3e88d]">        "Cybersecurity",</span>],
-    [<span className="text-[#b6c2ef]">    ]</span>],
-    ['};'],
-    [''],
-    ['\n'],
-    [<span className="text-[#c792ea]">struct</span>, ' ', <span className="text-[#82aaff]">Course</span>, ' {'],
-    [<span className="text-[#ffcb6b]">    title</span>, ': ', <span className="text-[#82aaff]">String</span>, ','],
-    [<span className="text-[#ffcb6b]">    institution</span>, ': ', <span className="text-[#82aaff]">String</span>, ','],
-    [<span className="text-[#ffcb6b]">    description</span>, ': ', <span className="text-[#82aaff]">String</span>, ','],
-    ['}'],
-    [''],
-    ['\n'],
-    [<span className="text-[#c792ea]">let</span>, ' ', <span className="text-[#b6c2ef]">related_courses</span>, ' = ', <span className="text-[#c792ea]">vec!</span>, '['],
-    ...courses.map(course => [
-      <span className="text-[#82aaff]">    Course</span>, ' {',
-      <span className="text-[#ffcb6b]"> title</span>, ': ', <span className="text-[#c3e88d]">`"${course.title}"`</span>, ', ',
-      <span className="text-[#ffcb6b]">institution</span>, ': ', <span className="text-[#c3e88d]">`"${course.institution}"`</span>, ', ',
-      <span className="text-[#ffcb6b]">description</span>, ': ', <span className="text-[#c3e88d]">`"${course.description}"`</span>, ' },'
-    ]),
-    [']'],
-    [''],
-    ['\n'],
-    [<span className="text-[#c792ea]">enum</span>, ' ', <span className="text-[#82aaff]">ContactType</span>, ' {'],
-    [<span className="text-[#f78c6c]">    Github</span>, ','],
-    [<span className="text-[#f78c6c]">    LinkedIn</span>, ','],
-    [<span className="text-[#f78c6c]">    Email</span>, ','],
-    ['}'],
-    [''],
-    ['\n'],
-    [<span className="text-[#c792ea]">fn</span>, ' ', <span className="text-[#82aaff]">contact</span>, '(', <span className="text-[#ffcb6b]">type</span>, ': ', <span className="text-[#82aaff]">ContactType</span>, ') -> ', <span className="text-[#82aaff]">&'static str</span>, ' {'],
-    [<span className="text-[#c792ea]">    match</span>, ' ', <span className="text-[#ffcb6b]">type</span>, ' {'],
-    [<span className="text-[#82aaff]">        ContactType::Github</span>, ' => ', <span className="text-[#c3e88d]">"https://github.com/angganion"</span>, ','],
-    [<span className="text-[#82aaff]">        ContactType::LinkedIn</span>, ' => ', <span className="text-[#c3e88d]">"https://www.linkedin.com/in/wahyu-ridho-anggoro-46b55021a"</span>, ','],
-    [<span className="text-[#82aaff]">        ContactType::Email</span>, ' => ', <span className="text-[#c3e88d]">"wahyu.ridho@ui.ac.id"</span>, ','],
-    ['    }'],
-    ['}'],
-    ['\n'],
+const certs = [
+  {
+    title: "TypeScript Smart Contract 101",
+    institution: "Dacade",
+    description: "Create a unique and well-coded canister for the Internet Computer Protocol using TypeScript"
+  },
+  {
+    title: "Sui DeFi Development",
+    institution: "Dacade",
+    description: "Develop decentralized finance applications on the Sui blockchain using Move programming language."
+  },
+  {
+    title: "Accelerating CUDA C++ Applications with Concurrent Streams",
+    institution: "NVIDIA",
+    description: "Optimize CUDA C++ applications using concurrent streams for improved performance and efficiency."
+  },
+]
+
+const education = [
+  {
+    degree: "Bachelor of Computer Science",
+    major: "Information System",
+    institution: "Universitas Indonesia",
+    period: "2022 - Present",
+    location: "Depok, Indonesia",
+    relevant_courses: courses,
+    activities: [
+      "Teaching Assistant for Database Course",
+      "Academic Staff at BETIS Fasilkom UI",
+      "Active in programming competitions and hackathons"
+    ]
+  }
+]
+
+const workExperience = [
+  {
+    title: "Teaching Assistant of Database",
+    company: "Faculty of Computer Science, Universitas Indonesia",
+    type: "Part-time",
+    period: "Jul 2024 – Jun 2025",
+    location: "Depok, West Java, Indonesia",
+    description: "Assisting students with database concepts, SQL queries, and database design. Conducting lab sessions and grading assignments."
+  },
+  {
+    title: "Staff Akademis dan Pengajar",
+    company: "BETIS Fasilkom UI",
+    type: "Full-time", 
+    period: "Dec 2022 – Mar 2023",
+    location: "Depok, West Java, Indonesia",
+    description: "Teaching programming fundamentals and computer science concepts to new students. Developing course materials and assessments."
+  }
+]
+
+// Neovim-like File Tree Component
+function FileTree({ activeFile, onFileSelect, isOpen, onToggle }) {
+  const fileStructure = [
+    { name: "📁 ~/.config/nvim", type: "dir", children: [
+      { name: "init.lua", type: "file", icon: "🌙" },
+      { name: "lua/", type: "dir", children: [
+        { name: "plugins.lua", type: "file", icon: "🔌" },
+        { name: "keymaps.lua", type: "file", icon: "⌨️" },
+      ]},
+    ]},
+    { name: "📁 ~/portfolio", type: "dir", children: [
+      { name: "about.rs", type: "file", icon: "🦀" },
+      { name: "projects.md", type: "file", icon: "📝" },
+      { name: "education.py", type: "file", icon: "🐍" },
+      { name: "blog.sh", type: "file", icon: "💲" },
+      { name: "certs.json", type: "file", icon: "📜" },
+    ]},
+    { name: "📁 ~/documents", type: "dir", children: [
+      { name: "resume.pdf", type: "file", icon: "📄" },
+    ]},
   ];
 
+  const renderNode = (node, depth = 0) => {
+    const isActive = node.type === 'file' && node.name === activeFile;
+    
+    return (
+      <div key={node.name} className={`pl-${depth * 2}`}>
+        <div 
+          className={`flex items-center gap-1 px-2 py-0.5 text-xs cursor-pointer hover:bg-[#3c3836] transition-colors ${
+            isActive ? 'bg-[#504945] text-[#fabd2f]' : 'text-[#a89984]'
+          }`}
+          onClick={() => {
+            if (node.type === 'file') {
+              onFileSelect(node.name);
+              // Close sidebar on mobile after selection
+              if (window.innerWidth < 768) {
+                onToggle();
+              }
+            }
+          }}
+        >
+          <span className="w-4 text-center">
+            {node.type === 'dir' ? '📁' : node.icon}
+          </span>
+          <span className="font-mono text-xs">{node.name.replace(/📁\s/, '')}</span>
+        </div>
+        {node.children && node.children.map(child => renderNode(child, depth + 1))}
+      </div>
+    );
+  };
+
   return (
-    <pre className="bg-[#0f111a] text-[#b6c2ef] rounded-lg p-6 text-sm overflow-x-auto border border-gray-700 mb-6" style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
-      <code className="flex">
-        <div className="pr-4 select-none text-right text-[#546e7a]" style={{ minWidth: 32 }}>
+    <>
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={onToggle}
+        />
+      )}
+      
+      <div className={`
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'} 
+        md:translate-x-0 transition-transform duration-300 ease-in-out
+        fixed md:relative z-50 md:z-auto
+        w-64 md:w-64 bg-[#282828] border-r border-[#3c3836] flex flex-col h-full
+      `}>
+        <div className="bg-[#3c3836] px-3 py-1 text-[#ebdbb2] text-xs font-mono border-b border-[#504945] flex items-center justify-between">
+          <span>EXPLORER</span>
+          <div className="flex gap-1">
+            <span className="hover:bg-[#504945] px-1 rounded cursor-pointer" title="New File">+</span>
+            <span className="hover:bg-[#504945] px-1 rounded cursor-pointer" title="Refresh">⟲</span>
+            <span 
+              className="hover:bg-[#504945] px-1 rounded cursor-pointer md:hidden" 
+              title="Close"
+              onClick={onToggle}
+            >✕</span>
+            <span className="hover:bg-[#504945] px-1 rounded cursor-pointer hidden md:block" title="Collapse">v</span>
+          </div>
+        </div>
+        
+        <div className="flex-1 overflow-y-auto py-2">
+          {fileStructure.map(node => renderNode(node))}
+        </div>
+        
+        {/* Mini git status */}
+        <div className="border-t border-[#504945] p-2 text-xs text-[#928374] font-mono">
+          <div className="mb-1">Git Status:</div>
+          <div className="text-[#b8bb26]">● 3 changes</div>
+          <div className="text-[#fabd2f]">● 1 modified</div>
+          <div className="text-[#83a598]">● 2 staged</div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+// Neovim-like Status Line
+function StatusLine({ mode = "NORMAL", file, line = 1, col = 1, fileType = "rust" }) {
+  const getModeColor = (mode) => {
+    switch(mode) {
+      case "INSERT": return "bg-[#b8bb26] text-[#282828]";
+      case "VISUAL": return "bg-[#fabd2f] text-[#282828]";
+      case "COMMAND": return "bg-[#fb4934] text-[#ebdbb2]";
+      default: return "bg-[#83a598] text-[#282828]";
+    }
+  };
+
+  return (
+    <div className="bg-[#3c3836] text-[#ebdbb2] text-xs font-mono flex items-center justify-between px-2 py-1 border-t border-[#504945]">
+      <div className="flex items-center gap-2">
+        <span className={`px-2 py-1 font-bold ${getModeColor(mode)}`}>
+          {mode}
+        </span>
+        <span className="text-[#a89984]">~/portfolio/</span>
+        <span className="text-[#ebdbb2]">{file}</span>
+        <span className="text-[#a89984]">[+]</span>
+      </div>
+      <div className="flex items-center gap-4">
+        <span className="text-[#a89984]">utf-8</span>
+        <span className="text-[#a89984]">{fileType}</span>
+        <span className="text-[#ebdbb2]">{line}:{col}</span>
+        <span className="text-[#a89984]">100%</span>
+      </div>
+    </div>
+  );
+}
+
+// Neovim-style Rust Code Block
+function RustCodeBlock({ mode = "NORMAL" }) {
+  const codeLines = [
+    'use std::collections::HashMap;',
+    '',
+    '#[derive(Debug, Clone)]',
+    'struct Developer {',
+    '    name: String,',
+    '    role: String,',
+    '    location: String,',
+    '    skills: Vec<String>,',
+    '    interests: Vec<String>,',
+    '}',
+    '',
+    'impl Developer {',
+    '    fn new() -> Self {',
+    '        Self {',
+    '            name: "Wahyu Ridho Anggoro".to_string(),',
+    '            role: "Backend Developer".to_string(),',
+    '            location: "Depok, Indonesia".to_string(),',
+    '            skills: vec![',
+    '                "JavaScript/TypeScript".to_string(),',
+    '                "Python".to_string(),',
+    '                "Java".to_string(),',
+    '                "Dart".to_string(),',
+    '                "C/C++".to_string(),',    
+    '                "PostgreSQL".to_string(),',
+    '                "MongoDB".to_string(),',
+    '                "MySQL".to_string(),',
+    '                "Django".to_string(),',
+    '                "Spring Boot".to_string(),',
+    '                "Flutter".to_string(),',
+    '                "React.js".to_string(),',
+    '                "Next.js".to_string(),',
+    '                "Vue.js".to_string(),',
+    '                "Tailwind CSS".to_string(),',
+    '                "Move".to_string(),',
+    '                "Motoko".to_string(),',
+    '                "Docker".to_string(),',
+    '                "Git".to_string(),',
+    '            ],',
+    '            interests: vec![',
+    '                "Distributed Systems".to_string(),',
+    '                "API Design".to_string(),',
+    '                "Microservices".to_string(),',
+    '                "Blockchain".to_string(),',
+    '                "Computer Vision".to_string(),',
+    '                "Embedded Systems".to_string(),',
+    '                "Cybersecurity".to_string(),',
+    '            ],',
+    '        }',
+    '    }',
+    '',
+    '    fn contact(&self, contact_type: ContactType) -> &str {',
+    '        match contact_type {',
+    '            ContactType::Github => "https://github.com/angganion",',
+    '            ContactType::LinkedIn => "https://www.linkedin.com/in/wahyu-ridho-anggoro-46b55021a",',
+    '            ContactType::Email => "wahyu.ridho@ui.ac.id",',
+    '        }',
+    '    }',
+    '}',
+    '',
+    '#[derive(Debug)]',
+    'enum ContactType {',
+    '    Github,',
+    '    LinkedIn,',
+    '    Email,',
+    '}',
+    '',
+    'fn main() {',
+    '    let developer = Developer::new();',
+    '    println!("Hello, I\'m {}!", developer.name);',
+    '    println!("Role: {}", developer.role);',
+    '    println!("Location: {}", developer.location);',
+    '}',
+  ];
+
+  const highlightLine = (line, lineNum) => {
+    if (!line.trim()) return <span>&nbsp;</span>;
+    
+    // Parse line and return JSX elements instead of HTML strings
+    const parseRustSyntax = (text) => {
+      const parts = [];
+      let remaining = text;
+      let key = 0;
+      
+      // Define patterns with their styles
+      const patterns = [
+        { regex: /(use|struct|impl|fn|let|match|enum|derive|Debug|Clone|String|Vec|Self|println!|main)\b/, className: "text-[#fb4934]" },
+        { regex: /(std|collections|HashMap|Developer|ContactType)\b/, className: "text-[#fabd2f]" },
+        { regex: /"([^"]*)"/, className: "text-[#b8bb26]" },
+        { regex: /(\/\/.*$)/, className: "text-[#928374]" },
+        { regex: /(#\[.*?\])/, className: "text-[#8ec07c]" },
+        { regex: /(\w+!)/, className: "text-[#d3869b]" },
+        { regex: /(\d+)/, className: "text-[#d3869b]" },
+        { regex: /(->|=>|::|\{|\}|\[|\]|\(|\))/, className: "text-[#83a598]" },
+      ];
+      
+      while (remaining) {
+        let matched = false;
+        
+        for (const pattern of patterns) {
+          const match = remaining.match(pattern.regex);
+          if (match && match.index === 0) {
+            // Add the matched part with styling
+            parts.push(
+              <span key={key++} className={pattern.className}>
+                {match[0]}
+              </span>
+            );
+            remaining = remaining.slice(match[0].length);
+            matched = true;
+            break;
+          }
+        }
+        
+        if (!matched) {
+          // Add next character without styling
+          parts.push(
+            <span key={key++} className="text-[#ebdbb2]">
+              {remaining[0]}
+            </span>
+          );
+          remaining = remaining.slice(1);
+        }
+      }
+      
+      return parts.length > 0 ? parts : [<span key={0} className="text-[#ebdbb2]">{text}</span>];
+    };
+    
+    return <span>{parseRustSyntax(line)}</span>;
+  };
+
+  return (
+    <div className="bg-[#282828] rounded-lg overflow-hidden border border-[#3c3836]">
+      {/* File tab */}
+      <div className="bg-[#3c3836] px-2 md:px-4 py-2 border-b border-[#504945]">
+        <div className="flex items-center gap-2">
+          <span className="text-[#fb4934]">●</span>
+          <span className="text-[#ebdbb2] text-xs md:text-sm font-mono">🦀 about.rs</span>
+          <span className="text-[#928374] text-xs">[+]</span>
+        </div>
+      </div>
+      
+      {/* Code content */}
+      <pre className="bg-[#282828] text-[#ebdbb2] p-2 md:p-4 text-xs md:text-sm overflow-x-auto font-mono relative">
+              <code className="flex">
+          {/* Git signs gutter */}
+          <div className="pr-1 select-none text-[#928374] min-w-[0.75rem] md:min-w-[1rem] text-center">
+            {codeLines.map((_, i) => (
+              <div key={i} className="leading-4 md:leading-5">
+                {i === 2 ? <span className="text-[#b8bb26]">+</span> : 
+                 i === 15 ? <span className="text-[#fabd2f]">~</span> :
+                 i === 30 ? <span className="text-[#83a598]">+</span> : ''}
+              </div>
+            ))}
+          </div>
+          
+          {/* Line numbers */}
+          <div className="pr-2 md:pr-4 select-none text-right text-[#928374] min-w-[2rem] md:min-w-[3rem]">
           {codeLines.map((_, i) => (
-            <div key={i}>{i + 1}</div>
+              <div key={i} className={`leading-4 md:leading-5 ${i === 14 ? 'text-[#ebdbb2] font-bold' : ''}`}>
+                {i + 1}
+              </div>
           ))}
         </div>
-        <div>
+          
+          {/* Code content */}
+          <div className="flex-1 relative">
           {codeLines.map((line, i) => (
-            <div key={i} className="whitespace-pre">{line}</div>
+              <div key={i} className={`leading-4 md:leading-5 relative ${
+                i === 14 ? 'bg-[#3c3836]' : ''
+              }`}>
+                {highlightLine(line, i + 1)}
+                
+            </div>
           ))}
         </div>
+          
+          
       </code>
     </pre>
+    </div>
   );
 }
 
 export default function Portfolio() {
+  // Add viewport meta tag for mobile responsiveness
+  React.useEffect(() => {
+    const metaViewport = document.querySelector('meta[name="viewport"]');
+    if (!metaViewport) {
+      const meta = document.createElement('meta');
+      meta.name = 'viewport';
+      meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+      document.head.appendChild(meta);
+    }
+  }, []);
   const [tab, setTab] = useState("about");
+  const [mode, setMode] = useState("NORMAL");
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const [commandLine, setCommandLine] = useState("");
+  const [showCommandLine, setShowCommandLine] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  React.useEffect(() => {
+    setIsClient(true);
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    
+    // Close sidebar on window resize if mobile
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setSidebarOpen(false);
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // Neovim keyboard shortcuts simulation
+  React.useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === ':' && mode === "NORMAL") {
+        e.preventDefault();
+        setShowCommandLine(true);
+        setMode("COMMAND");
+      } else if (e.key === 'Escape') {
+        setShowCommandLine(false);
+        setMode("NORMAL");
+        setCommandLine("");
+      } else if (e.key === 'i' && mode === "NORMAL") {
+        setMode("INSERT");
+      } else if (e.key === 'v' && mode === "NORMAL") {
+        setMode("VISUAL");
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [mode]);
+
+  const getFileFromTab = (tabName) => {
+    const fileMap = {
+      "about": "about.rs",
+      "projects": "projects.md",
+      "education": "education.py", 
+      "blog": "blog.sh",
+      "certs": "certs.json"
+    };
+    return fileMap[tabName] || "about.rs";
+  };
 
   return (
-    <div className="min-h-screen bg-black text-gray-100 font-mono flex flex-col md:block">
-      {/* Sidebar */}
-      <aside className="w-full md:w-80 lg:w-96 max-w-full border-b md:border-b-0 md:border-r border-gray-700 p-8 flex flex-col justify-between md:fixed md:left-0 md:top-0 md:h-screen md:overflow-hidden z-20 bg-black">
-        <div>
-          <div className="flex flex-col items-center md:items-start gap-4">
-            <h1 className="font-extrabold text-2xl text-gray-100 mb-1">{profile.name}</h1>
-            <p className="text-blue-400 text-sm mb-2">{profile.role}</p>
-            <p className="flex items-center text-gray-400 text-sm mb-2">
-              <svg fill="none" height={14} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" width={14} className="mr-2 -mt-0.5 inline"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx={12} cy={10} r={3}></circle></svg>
-              {profile.location}
-            </p>
-            <p className="text-gray-400 text-sm leading-relaxed mt-4 text-center md:text-left">{profile.bio}</p>
+    <div className="h-screen bg-[#282828] text-[#ebdbb2] font-mono flex flex-col">
+      {/* Top bar with working directory - FIXED TIDAK SCROLL */}
+      <div className="bg-[#3c3836] border-b border-[#504945] px-2 md:px-4 py-2 flex-shrink-0">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 md:gap-4">
+            {/* Hamburger menu for mobile */}
+            <button
+              className="md:hidden text-[#ebdbb2] hover:text-[#fabd2f] transition-colors"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            <span className="text-[#b8bb26] font-bold text-sm md:text-base">NVIM v0.9.5</span>
+            <span className="text-[#928374] hidden sm:inline">~/portfolio</span>
+            <span className="text-[#a89984] text-xs md:text-sm hidden md:inline">angga@ubuntu-wsl</span>
+            <span className="text-[#928374] text-xs hidden lg:inline">
+              [{isClient ? currentTime.toLocaleTimeString() : '00:00:00'}]
+            </span>
+          </div>
+          <div className="flex items-center gap-1 md:gap-2 text-xs text-[#928374]">
+            <span className="hidden sm:inline">⚡ WSL2</span>
+            <span className="hidden sm:inline">|</span>
+            <span className="hidden md:inline">🦀 rust 1.75.0</span>
+            <span className="hidden md:inline">|</span>
+            <span className="hidden sm:inline">git main</span>
+            <span className="hidden sm:inline">|</span>
+            <span className={`text-xs md:text-sm ${mode === "NORMAL" ? "text-[#83a598]" : mode === "INSERT" ? "text-[#b8bb26]" : mode === "VISUAL" ? "text-[#fabd2f]" : "text-[#fb4934]"}`}>
+              {mode}
+            </span>
           </div>
         </div>
-        <div>
-          {/* Terminal mini */}
-          <div className="bg-black border rounded-lg border-gray-700 mt-6 p-4 text-xs">
-            <div className="flex items-center mb-2">
-              <span className="mr-2 text-blue-400">$</span> <span className="text-gray-100">npx connect</span>
-            </div>
-            <div className="text-gray-400 mt-2">Initializing...<br />Ready to connect.<br />Waiting for contact request...</div>
+      </div>
+
+      <div className="flex flex-1 overflow-hidden relative">
+        {/* File Explorer */}
+        <FileTree 
+          activeFile={getFileFromTab(tab)} 
+          isOpen={sidebarOpen}
+          onToggle={() => setSidebarOpen(!sidebarOpen)}
+          onFileSelect={(file) => {
+            if (file === "about.rs") setTab("about");
+            else if (file === "projects.md") setTab("projects");
+            else if (file === "education.py") setTab("education");
+            else if (file === "blog.sh") setTab("blog");
+            else if (file === "certs.json") setTab("certs");
+          }} 
+        />
+
+        {/* Main content area */}
+        <div className="flex-1 flex flex-col overflow-hidden w-full md:w-auto">
+          {/* Buffer tabs - FIXED TIDAK SCROLL */}
+          <div className="bg-[#3c3836] border-b border-[#504945] flex flex-shrink-0 overflow-x-auto">
+            {["about", "projects", "education", "blog", "certs"].map((tabName) => {
+              const isActive = tab === tabName;
+              const fileName = getFileFromTab(tabName);
+              const getIcon = (name) => {
+                if (name.includes('.rs')) return '🦀';
+                if (name.includes('.md')) return '📝';
+                if (name.includes('.py')) return '🐍';
+                if (name.includes('.sh')) return '💲';
+                if (name.includes('.json')) return '📜';
+                return '📄';
+              };
+              
+              return (
+                <button
+                  key={tabName}
+                  className={`flex items-center gap-1 md:gap-2 px-2 md:px-4 py-2 text-xs font-mono border-r border-[#504945] transition-colors whitespace-nowrap ${
+                    isActive 
+                      ? "bg-[#282828] text-[#ebdbb2]" 
+                      : "text-[#a89984] hover:text-[#ebdbb2] hover:bg-[#504945]"
+                  }`}
+                  onClick={() => setTab(tabName)}
+                >
+                  <span>{getIcon(fileName)}</span>
+                  <span className="hidden sm:inline">{fileName}</span>
+                  <span className="sm:hidden">{tabName}</span>
+                  {isActive && <span className="text-[#fb4934]">●</span>}
+                </button>
+              );
+            })}
           </div>
-          {/* Contacts */}
-          <div className="flex justify-between flex-wrap gap-3 mt-6">
-            <a className="flex bg-black border justify-center rounded-lg border-gray-700 duration-150 h-10 hover:-translate-y-0.5 hover:bg-gray-800 items-center text-gray-100 transition-all w-10" href={profile.github} target="_blank" title="View GitHub Profile" rel="noopener noreferrer">
-              <svg fill="none" height={24} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" width={24}><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-            </a>
-            <a className="flex bg-black border justify-center rounded-lg border-gray-700 duration-150 h-10 hover:-translate-y-0.5 hover:bg-gray-800 items-center text-gray-100 transition-all w-10" href={profile.linkedin} target="_blank" title="View LinkedIn Profile" rel="noopener noreferrer">
-              <svg fill="none" height={24} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" width={24}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect height={12} width={4} x={2} y={9}></rect><circle cx={4} cy={4} r={2}></circle></svg>
-            </a>
-            <a className="flex bg-black border justify-center rounded-lg border-gray-700 duration-150 h-10 hover:-translate-y-0.5 hover:bg-gray-800 items-center text-gray-100 transition-all w-10" href={`mailto:${profile.email}`} target="_blank" title="Send Email" rel="noopener noreferrer">
-              <svg fill="none" height={24} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" width={24}><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            </a>
+
+          {/* Content area - HANYA INI YANG SCROLL */}
+          <div className="flex-1 bg-[#282828] p-2 md:p-4 overflow-y-auto">
+            {tab === "about" && <RustCodeBlock mode={mode} />}
+            
+            {tab === "education" && (
+              <div className="space-y-6">
+                {/* Python-style Education File */}
+                <div className="bg-[#282828] rounded-lg overflow-hidden border border-[#3c3836]">
+                  <div className="bg-[#3c3836] px-4 py-2 border-b border-[#504945]">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[#fb4934]">●</span>
+                      <span className="text-[#ebdbb2] text-sm font-mono">🐍 education.py</span>
+                      <span className="text-[#928374] text-xs">[+]</span>
+                    </div>
+                  </div>
+                  
+                  <pre className="bg-[#282828] text-[#ebdbb2] p-2 md:p-4 text-xs md:text-sm overflow-x-auto font-mono">
+                    <code className="flex">
+                      <div className="pr-2 md:pr-4 select-none text-right text-[#928374] min-w-[2rem] md:min-w-[3rem]">
+                        {Array.from({length: 38}, (_, i) => (
+                          <div key={i} className="leading-4 md:leading-5">{i + 1}</div>
+                        ))}
+                      </div>
+                      <div className="flex-1">
+                        <div className="leading-4 md:leading-5"><span className="text-[#928374]"># -*- coding: utf-8 -*-</span></div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#fb4934]">from</span> <span className="text-[#fabd2f]">datetime</span> <span className="text-[#fb4934]">import</span> <span className="text-[#ebdbb2]">datetime</span></div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#fb4934]">from</span> <span className="text-[#fabd2f]">typing</span> <span className="text-[#fb4934]">import</span> <span className="text-[#83a598]">List</span>, <span className="text-[#83a598]">Dict</span></div>
+                        <div className="leading-4 md:leading-5">&nbsp;</div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#fb4934]">class</span> <span className="text-[#fabd2f]">Education</span>:</div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">    </span><span className="text-[#fb4934]">def</span> <span className="text-[#83a598]">__init__</span>(<span className="text-[#ebdbb2]">self</span>):</div>
+                                                 <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">        self.degree = </span><span className="text-[#b8bb26]">"Bachelor of Computer Science"</span></div>
+                         <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">        self.major = </span><span className="text-[#b8bb26]">"Information System"</span></div>
+                         <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">        self.institution = </span><span className="text-[#b8bb26]">"Universitas Indonesia"</span></div>
+                         <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">        self.period = </span><span className="text-[#b8bb26]">"2022 - Present"</span></div>
+                         <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">        self.location = </span><span className="text-[#b8bb26]">"Depok, Indonesia"</span></div>
+                        <div className="leading-4 md:leading-5">&nbsp;</div>
+                                                 <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">    </span><span className="text-[#fb4934]">def</span> <span className="text-[#83a598]">get_relevant_courses</span>(<span className="text-[#ebdbb2]">self</span>) -&gt; <span className="text-[#83a598]">List</span>[<span className="text-[#83a598]">str</span>]:</div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">        </span><span className="text-[#fb4934]">return</span> [</div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#b8bb26]">            "Pemrograman Berbasis Platform (PBP)",</span></div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#b8bb26]">            "Struktur Data dan Algoritma",</span></div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#b8bb26]">            "Basis Data (Database)",</span></div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#b8bb26]">            "Computer Vision",</span></div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#b8bb26]">            "Embedded Systems",</span></div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#b8bb26]">            "Robotika",</span></div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#b8bb26]">            "Ethical Hacking",</span></div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#b8bb26]">            "Arsitektur dan Pemrograman Aplikasi Perusahaan"</span></div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">        ]</span></div>
+                        <div className="leading-4 md:leading-5">&nbsp;</div>
+                                                 <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">    </span><span className="text-[#fb4934]">def</span> <span className="text-[#83a598]">get_activities</span>(<span className="text-[#ebdbb2]">self</span>) -&gt; <span className="text-[#83a598]">List</span>[<span className="text-[#83a598]">str</span>]:</div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">        </span><span className="text-[#fb4934]">return</span> [</div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#b8bb26]">            "Teaching Assistant for Database Course",</span></div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#b8bb26]">            "Academic Staff at BETIS Fasilkom UI",</span></div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#b8bb26]">            "Active in programming competitions and hackathons"</span></div>
+                        <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">        ]</span></div>
+                        <div className="leading-4 md:leading-5">&nbsp;</div>
+                                                                          <div className="leading-4 md:leading-5"><span className="text-[#928374]"># Create instance and display info</span></div>
+                         <div className="leading-4 md:leading-5"><span className="text-[#fb4934]">if</span> <span className="text-[#ebdbb2]">__name__ == </span><span className="text-[#b8bb26]">"__main__"</span>:</div>
+                         <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">    student = Education()</span></div>
+                          <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">    </span><span className="text-[#83a598]">print</span>(<span className="text-[#b8bb26]">"Currently pursuing", student.degree</span>)</div>
+                          <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">    </span><span className="text-[#83a598]">print</span>(<span className="text-[#b8bb26]">"Major:", student.major</span>)</div>
+                          <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">    </span><span className="text-[#83a598]">print</span>(<span className="text-[#b8bb26]">"at", student.institution</span>)</div>
+                      </div>
+                    </code>
+                  </pre>
+                </div>
+
+                                 
+                 {/* Terminal Output */}
+                 <div className="bg-[#282828] rounded-lg overflow-hidden border border-[#3c3836]">
+                   <div className="bg-[#3c3836] px-4 py-2 border-b border-[#504945]">
+                     <div className="flex items-center gap-2">
+                       <span className="text-[#fb4934]">●</span>
+                       <span className="text-[#ebdbb2] text-sm font-mono">bash</span>
+                       <span className="text-[#928374] text-xs">angga@ubuntu-wsl</span>
+                     </div>
+                   </div>
+                   
+                   <div className="bg-[#282828] text-[#ebdbb2] p-2 md:p-4 text-xs md:text-sm font-mono">
+                     {/* Command prompt */}
+                     <div className="mb-4">
+                       <span className="text-[#b8bb26]">angga@ubuntu-wsl</span>
+                       <span className="text-[#ebdbb2]">:</span>
+                       <span className="text-[#83a598]">~/portfolio</span>
+                       <span className="text-[#ebdbb2]">$ </span>
+                       <span className="text-[#ebdbb2]">python education.py</span>
+                     </div>
+                     
+                     {/* Python output */}
+                     <div className="space-y-1 mb-4">
+                       <div><span className="text-[#ebdbb2]">Currently pursuing Bachelor of Computer Science</span></div>
+                       <div><span className="text-[#ebdbb2]">Major: Information System</span></div>
+                       <div><span className="text-[#ebdbb2]">at Universitas Indonesia</span></div>
+                     </div>
+                     
+                     {/* Separator */}
+                     <div className="border-t border-[#504945] my-4"></div>
+                     
+                     {/* Work Experience as terminal output */}
+                     <div className="mb-4">
+                       <div className="text-[#ebdbb2] mb-2">
+                         <span className="text-[#b8bb26]">angga@ubuntu-wsl</span>
+                         <span className="text-[#ebdbb2]">:</span>
+                         <span className="text-[#83a598]">~/portfolio</span>
+                         <span className="text-[#ebdbb2]">$ </span>
+                         <span className="text-[#ebdbb2]">cat work_experience.txt</span>
+                       </div>
+                       {workExperience.map((work, idx) => (
+                         <div key={idx} className="mb-3 text-[#ebdbb2]">
+                           <div>{work.title}</div>
+                           <div>{work.company}</div>
+                           <div>{work.type} | {work.period}</div>
+                           <div>{work.location}</div>
+                           <div className="text-[#a89984]">{work.description}</div>
+                           {idx < workExperience.length - 1 && <div className="my-2">---</div>}
+                         </div>
+                       ))}
+                     </div>
+                     
+                     {/* Relevant Courses as terminal output */}
+                     <div className="mb-4">
+                       <div className="text-[#ebdbb2] mb-2">
+                         <span className="text-[#b8bb26]">angga@ubuntu-wsl</span>
+                         <span className="text-[#ebdbb2]">:</span>
+                         <span className="text-[#83a598]">~/portfolio</span>
+                         <span className="text-[#ebdbb2]">$ </span>
+                         <span className="text-[#ebdbb2]">ls -la courses/</span>
+                       </div>
+                       <div className="text-[#ebdbb2] mb-2">total {courses.length}</div>
+                       {courses.slice(0, 8).map((course, idx) => (
+                         <div key={idx} className="text-[#ebdbb2]">
+                           <span className="text-[#a89984]">-rw-r--r-- 1 angga angga </span>
+                           <span className="text-[#ebdbb2]">{(idx + 1).toString().padStart(4, ' ')} </span>
+                           <span className="text-[#a89984]">Dec {(idx + 1).toString().padStart(2, ' ')} 2024 </span>
+                           <span className="text-[#83a598]">{course.title.toLowerCase().replace(/\s+/g, '_')}.txt</span>
+                         </div>
+                       ))}
+                       
+                       <div className="mt-3 text-[#ebdbb2]">
+                         <span className="text-[#b8bb26]">angga@ubuntu-wsl</span>
+                         <span className="text-[#ebdbb2]">:</span>
+                         <span className="text-[#83a598]">~/portfolio</span>
+                         <span className="text-[#ebdbb2]">$ </span>
+                         <span className="text-[#ebdbb2]">head -n 1 courses/*.txt</span>
+                       </div>
+                       
+                       {courses.slice(0, 6).map((course, idx) => (
+                         <div key={idx} className="text-[#ebdbb2] mt-1">
+                           <span className="text-[#fabd2f]">==&gt; courses/{course.title.toLowerCase().replace(/\s+/g, '_')}.txt &lt;==</span>
+                           <div className="text-[#a89984] ml-0">{course.description}</div>
+                         </div>
+                       ))}
+                     </div>
+                     
+                     {/* New command prompt */}
+                     <div className="mt-4">
+                       <span className="text-[#b8bb26]">angga@ubuntu-wsl</span>
+                       <span className="text-[#ebdbb2]">:</span>
+                       <span className="text-[#83a598]">~/portfolio</span>
+                       <span className="text-[#ebdbb2]">$ </span>
+                       <span className="text-[#ebdbb2] animate-pulse">_</span>
+                     </div>
           </div>
         </div>
-      </aside>
-      {/* Main Content */}
-      <main className="flex-1 flex flex-col min-h-screen md:ml-0 md:pl-0 md:ml-80 lg:ml-96">
-        {/* Tab Bar */}
-        <div className="flex bg-black border-b border-gray-700 sticky top-0 z-10">
-          <button
-            className={`flex items-center gap-2 px-4 py-2 tab-link text-xs font-semibold border-r border-gray-700 transition-colors duration-150 ${tab === "about" ? "text-blue-400" : "text-gray-100 hover:text-blue-300"}`}
-            onClick={() => setTab("about")}
-          >
-            {/* Rust crab (Ferris) icon */}
-            <svg width="16" height="16" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="inline-block"><circle cx="16" cy="18" r="7" fill="#ff7139" stroke="#b35c1e" strokeWidth="1.5"/><ellipse cx="11.5" cy="15.5" rx="1.5" ry="2.5" fill="#ff7139" stroke="#b35c1e" strokeWidth="1"/><ellipse cx="20.5" cy="15.5" rx="1.5" ry="2.5" fill="#ff7139" stroke="#b35c1e" strokeWidth="1"/><ellipse cx="9" cy="21" rx="1.5" ry="0.5" fill="#ff7139" stroke="#b35c1e" strokeWidth="1"/><ellipse cx="23" cy="21" rx="1.5" ry="0.5" fill="#ff7139" stroke="#b35c1e" strokeWidth="1"/><circle cx="13.5" cy="18" r="1" fill="#222"/><circle cx="18.5" cy="18" r="1" fill="#222"/><path d="M7 13 Q4 10 7 7" stroke="#b35c1e" strokeWidth="1.2" fill="none"/><path d="M25 13 Q28 10 25 7" stroke="#b35c1e" strokeWidth="1.2" fill="none"/><path d="M6 25 Q8 23 10 22" stroke="#b35c1e" strokeWidth="1.2" fill="none"/><path d="M26 25 Q24 23 22 22" stroke="#b35c1e" strokeWidth="1.2" fill="none"/></svg>
-            about.rs
-          </button>
-          <button
-            className={`flex items-center gap-2 px-4 py-2 tab-link text-xs font-semibold border-r border-gray-700 transition-colors duration-150 ${tab === "projects" ? "text-blue-400" : "text-gray-100 hover:text-blue-300"}`}
-            onClick={() => setTab("projects")}
-          >
-            {/* Markdown icon */}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline-block"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 15V9l2 2l2-2v6"/><path d="M17 13h-2v2h2v-2z"/></svg>
-            projects.md
-          </button>
-          <button
-            className={`flex items-center gap-2 px-4 py-2 tab-link text-xs font-semibold border-r border-gray-700 transition-colors duration-150 ${tab === "blog" ? "text-blue-400" : "text-gray-100 hover:text-blue-300"}`}
-            onClick={() => setTab("blog")}
-          >
-            {/* Shell/terminal icon */}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline-block"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 9l3 3-3 3"/><path d="M13 15h3"/></svg>
-            blog.sh
-          </button>
         </div>
-        {/* Tab Content */}
-        <div className="flex-grow bg-black p-6 overflow-y-auto h-screen">
-          {tab === "about" && (
-            <RustCodeBlock />
           )}
+            
           {tab === "projects" && (
-            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+              <div className="space-y-4">
+                <div className="bg-[#3c3836] rounded-lg p-3 md:p-4 border border-[#504945]">
+                  <h3 className="text-[#fabd2f] text-base md:text-lg font-mono mb-2"># Projects</h3>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4">
               {projects.map((project, idx) => (
-                <div key={idx} className="flex bg-black border rounded-lg border-gray-700 flex-col items-start p-4 mb-4">
-                  <h3 className="mb-2 font-semibold text-white text-xl">{project.title}</h3>
-                  <p className="text-gray-400 mb-2 text-sm">{project.description}</p>
-                  <span className="text-xs text-blue-400 bg-gray-800 px-2 py-1 rounded mb-2">{project.tech}</span>
-                  <div className="flex flex-wrap gap-2 mt-2">
+                      <div key={idx} className="bg-[#282828] border border-[#504945] rounded-lg p-3 md:p-4">
+                        <h4 className="text-[#ebdbb2] font-mono text-sm md:text-base mb-2">## {project.title}</h4>
+                        <p className="text-[#a89984] text-xs md:text-sm mb-3">{project.description}</p>
+                        <div className="text-xs text-[#8ec07c] bg-[#3c3836] px-2 py-1 rounded mb-3 font-mono overflow-x-auto">
+                          {project.tech}
+                        </div>
+                        <div className="flex flex-wrap gap-2">
                     {project.links.map((link, i) => (
                       <a
                         key={i}
-                        className="hover:text-blue-400 px-3 border border-gray-700 hover:border-blue-400 py-1 rounded-lg text-xs text-center transition-all"
+                              className="text-[#83a598] hover:text-[#ebdbb2] border border-[#504945] hover:border-[#83a598] px-2 py-1 rounded text-xs font-mono transition-colors"
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {link.label}
+                              [{link.label}]
                       </a>
                     ))}
                   </div>
                 </div>
               ))}
+                  </div>
+                </div>
             </div>
           )}
+            
           {tab === "blog" && (
-            <div className="flex flex-col items-center justify-center h-full">
-              <div className="bg-black border rounded-lg border-gray-700 flex flex-col items-start p-8 max-w-xl w-full shadow-lg">
-                <h3 className="mb-2 font-semibold text-white text-2xl">Blog (Coming Soon)</h3>
-                <p className="text-gray-400 mb-4 text-sm">
-                  Personal blog with articles on backend, distributed systems, and more. Coming soon!
-                </p>
+              <div className="bg-[#3c3836] rounded-lg p-3 md:p-6 border border-[#504945]">
+                <div className="font-mono">
+                  <div className="text-[#928374] mb-2 text-xs md:text-sm">#!/bin/bash</div>
+                  <div className="text-[#fb4934] mb-2 text-xs md:text-sm"># Blog Status</div>
+                  <div className="text-[#ebdbb2] mb-4 text-xs md:text-sm">echo "Coming Soon..."</div>
+                  <div className="text-[#928374] mb-2 text-xs md:text-sm"># Personal blog with articles on:</div>
+                  <div className="text-[#a89984] mb-2 text-xs md:text-sm"># - Backend Development</div>
+                  <div className="text-[#a89984] mb-2 text-xs md:text-sm"># - Distributed Systems</div>
+                  <div className="text-[#a89984] mb-4 text-xs md:text-sm"># - System Architecture</div>
                 <a
                   href="https://yourblogdomain.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 px-5 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md"
+                    className="inline-block bg-[#b8bb26] text-[#282828] px-3 md:px-4 py-2 rounded font-mono text-xs md:text-sm hover:bg-[#a89984] transition-colors"
                 >
-                  Read on my blog
+                    [Visit Blog]
                 </a>
               </div>
             </div>
           )}
+            
+          {tab === "certs" && (
+            <div className="bg-[#282828] rounded-lg overflow-hidden border border-[#3c3836]">
+              <div className="bg-[#3c3836] px-4 py-2 border-b border-[#504945]">
+                <div className="flex items-center gap-2">
+                  <span className="text-[#fb4934]">●</span>
+                  <span className="text-[#ebdbb2] text-sm font-mono">📜 certs.json</span>
+                  <span className="text-[#928374] text-xs">[+]</span>
+                </div>
+              </div>
+              
+              <pre className="bg-[#282828] text-[#ebdbb2] p-2 md:p-4 text-xs md:text-sm overflow-x-auto font-mono">
+                <code className="flex">
+                  <div className="pr-2 md:pr-4 select-none text-right text-[#928374] min-w-[2rem] md:min-w-[3rem]">
+                    {Array.from({length: 32}, (_, i) => (
+                      <div key={i} className="leading-4 md:leading-5">{i + 1}</div>
+                    ))}
+                  </div>
+                  <div className="flex-1">
+                    <div className="leading-4 md:leading-5"><span className="text-[#83a598]">&#123;</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">  </span><span className="text-[#8ec07c]">"certifications"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#83a598]">[</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">    </span><span className="text-[#83a598]">&#123;</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"title"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#b8bb26]">"TypeScript Smart Contract 101"</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"institution"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#b8bb26]">"Dacade"</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"description"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#b8bb26]">"Create a unique and well-coded canister for the Internet Computer Protocol using TypeScript"</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"platform"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#b8bb26]">"Internet Computer"</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"technologies"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#83a598]">[</span><span className="text-[#b8bb26]">"TypeScript"</span><span className="text-[#ebdbb2]">, </span><span className="text-[#b8bb26]">"ICP"</span><span className="text-[#ebdbb2]">, </span><span className="text-[#b8bb26]">"Smart Contracts"</span><span className="text-[#83a598]">]</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">    </span><span className="text-[#83a598]">&#125;</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">    </span><span className="text-[#83a598]">&#123;</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"title"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#b8bb26]">"Sui DeFi Development"</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"institution"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#b8bb26]">"Dacade"</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"description"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#b8bb26]">"Develop decentralized finance applications on the Sui blockchain using Move programming language."</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"platform"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#b8bb26]">"Sui Blockchain"</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"technologies"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#83a598]">[</span><span className="text-[#b8bb26]">"Move"</span><span className="text-[#ebdbb2]">, </span><span className="text-[#b8bb26]">"Sui"</span><span className="text-[#ebdbb2]">, </span><span className="text-[#b8bb26]">"DeFi"</span><span className="text-[#ebdbb2]">, </span><span className="text-[#b8bb26]">"Blockchain"</span><span className="text-[#83a598]">]</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">    </span><span className="text-[#83a598]">&#125;</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">    </span><span className="text-[#83a598]">&#123;</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"title"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#b8bb26]">"Accelerating CUDA C++ Applications with Concurrent Streams"</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"institution"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#b8bb26]">"NVIDIA"</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"description"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#b8bb26]">"Optimize CUDA C++ applications using concurrent streams for improved performance and efficiency."</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"platform"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#b8bb26]">"NVIDIA GPU Computing"</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">      </span><span className="text-[#8ec07c]">"technologies"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#83a598]">[</span><span className="text-[#b8bb26]">"CUDA"</span><span className="text-[#ebdbb2]">, </span><span className="text-[#b8bb26]">"C++"</span><span className="text-[#ebdbb2]">, </span><span className="text-[#b8bb26]">"GPU Computing"</span><span className="text-[#ebdbb2]">, </span><span className="text-[#b8bb26]">"Parallel Programming"</span><span className="text-[#83a598]">]</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">    </span><span className="text-[#83a598]">&#125;</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">  </span><span className="text-[#83a598]">]</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">  </span><span className="text-[#8ec07c]">"totalCount"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#d3869b]">3</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">  </span><span className="text-[#8ec07c]">"lastUpdated"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#b8bb26]">"2024-12-30"</span><span className="text-[#ebdbb2]">,</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#ebdbb2]">  </span><span className="text-[#8ec07c]">"categories"</span><span className="text-[#ebdbb2]">: </span><span className="text-[#83a598]">[</span><span className="text-[#b8bb26]">"Blockchain"</span><span className="text-[#ebdbb2]">, </span><span className="text-[#b8bb26]">"GPU Computing"</span><span className="text-[#ebdbb2]">, </span><span className="text-[#b8bb26]">"Smart Contracts"</span><span className="text-[#83a598]">]</span></div>
+                    <div className="leading-4 md:leading-5"><span className="text-[#83a598]">&#125;</span></div>
+                  </div>
+                </code>
+              </pre>
+            </div>
+          )}
         </div>
-      </main>
+
+          {/* Status line - FIXED TIDAK SCROLL */}
+          <div className="flex-shrink-0 hidden md:block">
+            <StatusLine 
+              mode={mode} 
+              file={getFileFromTab(tab)} 
+              line={16} 
+              col={25}
+              fileType={getFileFromTab(tab).split('.').pop()} 
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Command line - FIXED TIDAK SCROLL */}
+      {showCommandLine && (
+        <div className="bg-[#282828] border-t border-[#504945] px-2 py-1 flex-shrink-0">
+          <div className="flex items-center font-mono text-xs md:text-sm">
+            <span className="text-[#ebdbb2]">:</span>
+            <input
+              type="text"
+              value={commandLine}
+              onChange={(e) => setCommandLine(e.target.value)}
+              className="bg-transparent text-[#ebdbb2] outline-none ml-1 flex-1"
+              placeholder="Enter command..."
+              autoFocus
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  // Handle commands here
+                  if (commandLine === 'q' || commandLine === 'quit') {
+                    window.close();
+                  } else if (commandLine.startsWith('e ')) {
+                    // Open file simulation
+                    const fileName = commandLine.split(' ')[1];
+                    if (fileName.includes('about.rs')) setTab('about');
+                    else if (fileName.includes('projects.md')) setTab('projects');
+                    else if (fileName.includes('education.py')) setTab('education');
+                    else if (fileName.includes('blog.sh')) setTab('blog');
+                    else if (fileName.includes('certs.json')) setTab('certs');
+                  }
+                  setShowCommandLine(false);
+                  setMode("NORMAL");
+                  setCommandLine("");
+                }
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Mini help indicator - FIXED TIDAK SCROLL */}
+      <div className="bg-[#3c3836] px-2 py-1 text-xs text-[#928374] font-mono border-t border-[#504945] flex-shrink-0 hidden md:block">
+        <div className="flex items-center justify-between">
+          <span>Press 'i' for INSERT, 'v' for VISUAL, ':' for COMMAND, 'Esc' for NORMAL</span>
+        </div>
+      </div>
     </div>
   );
 }
