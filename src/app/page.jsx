@@ -233,17 +233,19 @@ function FileTree({ activeFile, onFileSelect, isOpen, onToggle }) {
       { name: "education.py", type: "file", icon: "🐍" },
       { name: "blog.sh", type: "file", icon: "💲" },
       { name: "certs.json", type: "file", icon: "📜" },
+      { name: "resume.pdf", type: "file", icon: "📄" },
     ]},
     { name: "📁 ~/documents", type: "dir", children: [
-      { name: "resume.pdf", type: "file", icon: "📄" },
+      { name: "backup.tar.gz", type: "file", icon: "📦" },
     ]},
   ];
 
   const renderNode = (node, depth = 0) => {
     const isActive = node.type === 'file' && node.name === activeFile;
-    
+    // Add extra indent for files
+    const indent = node.type === 'file' ? depth * 2 + 2 : depth * 2;
     return (
-      <div key={node.name} className={`pl-${depth * 2}`}>
+      <div key={node.name} style={{ paddingLeft: `${indent * 0.5}rem` }}>
         <div 
           className={`flex items-center gap-1 px-2 py-0.5 text-xs cursor-pointer hover:bg-[#3c3836] transition-colors ${
             isActive ? 'bg-[#504945] text-[#fabd2f]' : 'text-[#a89984]'
@@ -531,6 +533,534 @@ function RustCodeBlock({ mode = "NORMAL" }) {
   );
 }
 
+// Neovim-style Lua Code Block for init.lua
+function LuaCodeBlock({ mode = "NORMAL" }) {
+  const codeLines = [
+    '-- Neovim configuration file',
+    '-- Author: Wahyu Ridho Anggoro',
+    '',
+    '-- Bootstrap lazy.nvim',
+    'local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"',
+    'if not vim.loop.fs_stat(lazypath) then',
+    '  vim.fn.system({',
+    '    "git",',
+    '    "clone",',
+    '    "--filter=blob:none",',
+    '    "https://github.com/folke/lazy.nvim.git",',
+    '    "--branch=stable",',
+    '    lazypath,',
+    '  })',
+    'end',
+    'vim.opt.rtp:prepend(lazypath)',
+    '',
+    '-- Set leader key',
+    'vim.g.mapleader = " "',
+    'vim.g.maplocalleader = " "',
+    '',
+    '-- Load plugins',
+    'require("lazy").setup("plugins")',
+    '',
+    '-- Load keymaps',
+    'require("keymaps")',
+    '',
+    '-- Basic settings',
+    'vim.opt.number = true',
+    'vim.opt.relativenumber = true',
+    'vim.opt.mouse = "a"',
+    'vim.opt.ignorecase = true',
+    'vim.opt.smartcase = true',
+    'vim.opt.hlsearch = false',
+    'vim.opt.wrap = true',
+    'vim.opt.breakindent = true',
+    'vim.opt.tabstop = 2',
+    'vim.opt.shiftwidth = 2',
+    'vim.opt.expandtab = true',
+    '',
+    '-- Colorscheme',
+    'vim.cmd.colorscheme "gruvbox"',
+  ];
+
+  const highlightLine = (line, lineNum) => {
+    if (!line.trim()) return <span>&nbsp;</span>;
+    
+    const parseLuaSyntax = (text) => {
+      const parts = [];
+      let remaining = text;
+      let key = 0;
+      
+      const patterns = [
+        { regex: /(--.*$)/, className: "text-[#928374]" },
+        { regex: /(local|function|if|then|else|end|require|vim\.opt|vim\.cmd|vim\.g|vim\.fn)\b/, className: "text-[#fb4934]" },
+        { regex: /(stdpath|fs_stat|system|clone|setup|colorscheme)\b/, className: "text-[#fabd2f]" },
+        { regex: /"([^"]*)"/, className: "text-[#b8bb26]" },
+        { regex: /(\d+)/, className: "text-[#d3869b]" },
+        { regex: /(true|false)/, className: "text-[#83a598]" },
+        { regex: /(\.|\(|\)|\[|\]|\{|\})/, className: "text-[#83a598]" },
+      ];
+      
+      while (remaining) {
+        let matched = false;
+        
+        for (const pattern of patterns) {
+          const match = remaining.match(pattern.regex);
+          if (match && match.index === 0) {
+            parts.push(
+              <span key={key++} className={pattern.className}>
+                {match[0]}
+              </span>
+            );
+            remaining = remaining.slice(match[0].length);
+            matched = true;
+            break;
+          }
+        }
+        
+        if (!matched) {
+          parts.push(
+            <span key={key++} className="text-[#ebdbb2]">
+              {remaining[0]}
+            </span>
+          );
+          remaining = remaining.slice(1);
+        }
+      }
+      
+      return parts.length > 0 ? parts : [<span key={0} className="text-[#ebdbb2]">{text}</span>];
+    };
+    
+    return <span>{parseLuaSyntax(line)}</span>;
+  };
+
+  return (
+    <div className="bg-[#282828] rounded-lg overflow-hidden border border-[#3c3836]">
+      <div className="bg-[#3c3836] px-2 md:px-4 py-2 border-b border-[#504945]">
+        <div className="flex items-center gap-2">
+          <span className="text-[#fb4934]">●</span>
+          <span className="text-[#ebdbb2] text-xs md:text-sm font-mono">🌙 init.lua</span>
+          <span className="text-[#928374] text-xs">[+]</span>
+        </div>
+      </div>
+      
+      <pre className="bg-[#282828] text-[#ebdbb2] p-2 md:p-4 text-xs md:text-sm overflow-x-auto font-mono relative">
+        <code className="flex">
+          <div className="pr-1 select-none text-[#928374] min-w-[0.75rem] md:min-w-[1rem] text-center">
+            {codeLines.map((_, i) => (
+              <div key={i} className="leading-4 md:leading-5">
+                {i === 0 ? <span className="text-[#b8bb26]">+</span> : 
+                 i === 15 ? <span className="text-[#fabd2f]">~</span> :
+                 i === 30 ? <span className="text-[#83a598]">+</span> : ''}
+              </div>
+            ))}
+          </div>
+          
+          <div className="pr-2 md:pr-4 select-none text-right text-[#928374] min-w-[2rem] md:min-w-[3rem]">
+            {codeLines.map((_, i) => (
+              <div key={i} className="leading-4 md:leading-5">{i + 1}</div>
+            ))}
+          </div>
+          
+          <div className="flex-1 relative">
+            {codeLines.map((line, i) => (
+              <div key={i} className="leading-4 md:leading-5 relative">
+                {highlightLine(line, i + 1)}
+              </div>
+            ))}
+          </div>
+        </code>
+      </pre>
+    </div>
+  );
+}
+
+// Neovim-style Lua Code Block for plugins.lua
+function PluginsCodeBlock({ mode = "NORMAL" }) {
+  const codeLines = [
+    'return {',
+    '  -- Colorscheme',
+    '  {',
+    '    "ellisonleao/gruvbox.nvim",',
+    '    priority = 1000,',
+    '    config = function()',
+    '      vim.cmd.colorscheme "gruvbox"',
+    '    end,',
+    '  },',
+    '',
+    '  -- LSP',
+    '  {',
+    '    "neovim/nvim-lspconfig",',
+    '    dependencies = {',
+    '      "hrsh7th/nvim-cmp",',
+    '      "hrsh7th/cmp-nvim-lsp",',
+    '      "L3MON4D3/LuaSnip",',
+    '    },',
+    '  },',
+    '',
+    '  -- Treesitter',
+    '  {',
+    '    "nvim-treesitter/nvim-treesitter",',
+    '    build = ":TSUpdate",',
+    '    config = function()',
+    '      require("nvim-treesitter.configs").setup {',
+    '        ensure_installed = {',
+    '          "lua", "vim", "vimdoc",',
+    '          "javascript", "typescript",',
+    '          "python", "rust", "go",',
+    '          "html", "css", "json",',
+    '        },',
+    '        highlight = { enable = true },',
+    '        indent = { enable = true },',
+    '      }',
+    '    end,',
+    '  },',
+    '',
+    '  -- Telescope',
+    '  {',
+    '    "nvim-telescope/telescope.nvim",',
+    '    dependencies = { "nvim-lua/plenary.nvim" },',
+    '  },',
+    '',
+    '  -- Git',
+    '  {',
+    '    "lewis6991/gitsigns.nvim",',
+    '    config = function()',
+    '      require("gitsigns").setup()',
+    '    end,',
+    '  },',
+    '',
+    '  -- Status line',
+    '  {',
+    '    "nvim-lualine/lualine.nvim",',
+    '    dependencies = { "nvim-tree/nvim-web-devicons" },',
+    '    config = function()',
+    '      require("lualine").setup {',
+    '        options = {',
+    '          theme = "gruvbox",',
+    '        },',
+    '      }',
+    '    end,',
+    '  },',
+    '}',
+  ];
+
+  const highlightLine = (line, lineNum) => {
+    if (!line.trim()) return <span>&nbsp;</span>;
+    
+    const parseLuaSyntax = (text) => {
+      const parts = [];
+      let remaining = text;
+      let key = 0;
+      
+      const patterns = [
+        { regex: /(--.*$)/, className: "text-[#928374]" },
+        { regex: /(return|function|end|require|setup)\b/, className: "text-[#fb4934]" },
+        { regex: /(priority|dependencies|config|build|ensure_installed|highlight|indent|enable|theme)\b/, className: "text-[#fabd2f]" },
+        { regex: /"([^"]*)"/, className: "text-[#b8bb26]" },
+        { regex: /(\d+)/, className: "text-[#d3869b]" },
+        { regex: /(true|false)/, className: "text-[#83a598]" },
+        { regex: /(\{|\}|\[|\]|\(|\)|,)/, className: "text-[#83a598]" },
+      ];
+      
+      while (remaining) {
+        let matched = false;
+        
+        for (const pattern of patterns) {
+          const match = remaining.match(pattern.regex);
+          if (match && match.index === 0) {
+            parts.push(
+              <span key={key++} className={pattern.className}>
+                {match[0]}
+              </span>
+            );
+            remaining = remaining.slice(match[0].length);
+            matched = true;
+            break;
+          }
+        }
+        
+        if (!matched) {
+          parts.push(
+            <span key={key++} className="text-[#ebdbb2]">
+              {remaining[0]}
+            </span>
+          );
+          remaining = remaining.slice(1);
+        }
+      }
+      
+      return parts.length > 0 ? parts : [<span key={0} className="text-[#ebdbb2]">{text}</span>];
+    };
+    
+    return <span>{parseLuaSyntax(line)}</span>;
+  };
+
+  return (
+    <div className="bg-[#282828] rounded-lg overflow-hidden border border-[#3c3836]">
+      <div className="bg-[#3c3836] px-2 md:px-4 py-2 border-b border-[#504945]">
+        <div className="flex items-center gap-2">
+          <span className="text-[#fb4934]">●</span>
+          <span className="text-[#ebdbb2] text-xs md:text-sm font-mono">🔌 plugins.lua</span>
+          <span className="text-[#928374] text-xs">[+]</span>
+        </div>
+      </div>
+      
+      <pre className="bg-[#282828] text-[#ebdbb2] p-2 md:p-4 text-xs md:text-sm overflow-x-auto font-mono relative">
+        <code className="flex">
+          <div className="pr-1 select-none text-[#928374] min-w-[0.75rem] md:min-w-[1rem] text-center">
+            {codeLines.map((_, i) => (
+              <div key={i} className="leading-4 md:leading-5">
+                {i === 0 ? <span className="text-[#b8bb26]">+</span> : 
+                 i === 20 ? <span className="text-[#fabd2f]">~</span> :
+                 i === 40 ? <span className="text-[#83a598]">+</span> : ''}
+              </div>
+            ))}
+          </div>
+          
+          <div className="pr-2 md:pr-4 select-none text-right text-[#928374] min-w-[2rem] md:min-w-[3rem]">
+            {codeLines.map((_, i) => (
+              <div key={i} className="leading-4 md:leading-5">{i + 1}</div>
+            ))}
+          </div>
+          
+          <div className="flex-1 relative">
+            {codeLines.map((line, i) => (
+              <div key={i} className="leading-4 md:leading-5 relative">
+                {highlightLine(line, i + 1)}
+              </div>
+            ))}
+          </div>
+        </code>
+      </pre>
+    </div>
+  );
+}
+
+// Neovim-style Lua Code Block for keymaps.lua
+function KeymapsCodeBlock({ mode = "NORMAL" }) {
+  const codeLines = [
+    '-- Keymaps for Neovim',
+    '-- Author: Wahyu Ridho Anggoro',
+    '',
+    'local map = vim.keymap.set',
+    'local opts = { noremap = true, silent = true }',
+    '',
+    '-- General keymaps',
+    'map("n", "<leader>w", "<cmd>w<cr>", opts)',
+    'map("n", "<leader>q", "<cmd>q<cr>", opts)',
+    'map("n", "<leader>Q", "<cmd>qa!<cr>", opts)',
+    '',
+    '-- Window management',
+    'map("n", "<leader>sv", "<cmd>vsplit<cr>", opts)',
+    'map("n", "<leader>sh", "<cmd>split<cr>", opts)',
+    'map("n", "<leader>se", "<cmd>Ex<cr>", opts)',
+    '',
+    '-- Buffer navigation',
+    'map("n", "<leader>bn", "<cmd>bnext<cr>", opts)',
+    'map("n", "<leader>bp", "<cmd>bprev<cr>", opts)',
+    'map("n", "<leader>bd", "<cmd>bd<cr>", opts)',
+    '',
+    '-- Telescope',
+    'map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)',
+    'map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)',
+    'map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)',
+    'map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)',
+    '',
+    '-- LSP',
+    'map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)',
+    'map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)',
+    'map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)',
+    'map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)',
+    'map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)',
+    '',
+    '-- Git',
+    'map("n", "<leader>gs", "<cmd>Gitsigns preview_hunk<cr>", opts)',
+    'map("n", "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<cr>", opts)',
+    '',
+    '-- Terminal',
+    'map("n", "<leader>tt", "<cmd>terminal<cr>", opts)',
+    'map("t", "<esc>", "<cmd>stopinsert<cr>", opts)',
+    '',
+    '-- Custom functions',
+    'map("n", "<leader>cd", function()',
+    '  vim.cmd("cd " .. vim.fn.expand("%:p:h"))',
+    '  vim.notify("Changed directory to " .. vim.fn.getcwd())',
+    'end, opts)',
+  ];
+
+  const highlightLine = (line, lineNum) => {
+    if (!line.trim()) return <span>&nbsp;</span>;
+    
+    const parseLuaSyntax = (text) => {
+      const parts = [];
+      let remaining = text;
+      let key = 0;
+      
+      const patterns = [
+        { regex: /(--.*$)/, className: "text-[#928374]" },
+        { regex: /(local|function|end|map|vim\.keymap\.set|vim\.lsp\.buf|vim\.cmd|vim\.fn|vim\.notify)\b/, className: "text-[#fb4934]" },
+        { regex: /(noremap|silent|n|t|leader|cmd|cr|opts)\b/, className: "text-[#fabd2f]" },
+        { regex: /"([^"]*)"/, className: "text-[#b8bb26]" },
+        { regex: /(\d+)/, className: "text-[#d3869b]" },
+        { regex: /(true|false)/, className: "text-[#83a598]" },
+        { regex: /(<|>|\(|\)|,)/, className: "text-[#83a598]" },
+      ];
+      
+      while (remaining) {
+        let matched = false;
+        
+        for (const pattern of patterns) {
+          const match = remaining.match(pattern.regex);
+          if (match && match.index === 0) {
+            parts.push(
+              <span key={key++} className={pattern.className}>
+                {match[0]}
+              </span>
+            );
+            remaining = remaining.slice(match[0].length);
+            matched = true;
+            break;
+          }
+        }
+        
+        if (!matched) {
+          parts.push(
+            <span key={key++} className="text-[#ebdbb2]">
+              {remaining[0]}
+            </span>
+          );
+          remaining = remaining.slice(1);
+        }
+      }
+      
+      return parts.length > 0 ? parts : [<span key={0} className="text-[#ebdbb2]">{text}</span>];
+    };
+    
+    return <span>{parseLuaSyntax(line)}</span>;
+  };
+
+  return (
+    <div className="bg-[#282828] rounded-lg overflow-hidden border border-[#3c3836]">
+      <div className="bg-[#3c3836] px-2 md:px-4 py-2 border-b border-[#504945]">
+        <div className="flex items-center gap-2">
+          <span className="text-[#fb4934]">●</span>
+          <span className="text-[#ebdbb2] text-xs md:text-sm font-mono">⌨️ keymaps.lua</span>
+          <span className="text-[#928374] text-xs">[+]</span>
+        </div>
+      </div>
+      
+      <pre className="bg-[#282828] text-[#ebdbb2] p-2 md:p-4 text-xs md:text-sm overflow-x-auto font-mono relative">
+        <code className="flex">
+          <div className="pr-1 select-none text-[#928374] min-w-[0.75rem] md:min-w-[1rem] text-center">
+            {codeLines.map((_, i) => (
+              <div key={i} className="leading-4 md:leading-5">
+                {i === 0 ? <span className="text-[#b8bb26]">+</span> : 
+                 i === 15 ? <span className="text-[#fabd2f]">~</span> :
+                 i === 30 ? <span className="text-[#83a598]">+</span> : ''}
+              </div>
+            ))}
+          </div>
+          
+          <div className="pr-2 md:pr-4 select-none text-right text-[#928374] min-w-[2rem] md:min-w-[3rem]">
+            {codeLines.map((_, i) => (
+              <div key={i} className="leading-4 md:leading-5">{i + 1}</div>
+            ))}
+          </div>
+          
+          <div className="flex-1 relative">
+            {codeLines.map((line, i) => (
+              <div key={i} className="leading-4 md:leading-5 relative">
+                {highlightLine(line, i + 1)}
+              </div>
+            ))}
+          </div>
+        </code>
+      </pre>
+    </div>
+  );
+}
+
+// Terminal-style backup file viewer
+function BackupFileViewer({ mode = "NORMAL" }) {
+  const backupContent = [
+    'angga@ubuntu-wsl:~/documents$ tar -tvf backup.tar.gz',
+    'drwxr-xr-x angga/angga         0 2024-12-30 10:30 portfolio_backup/',
+    'drwxr-xr-x angga/angga         0 2024-12-30 10:30 portfolio_backup/src/',
+    'drwxr-xr-x angga/angga         0 2024-12-30 10:30 portfolio_backup/src/app/',
+    '-rw-r--r-- angga/angga      1078 2024-12-30 10:30 portfolio_backup/src/app/page.jsx',
+    'drwxr-xr-x angga/angga         0 2024-12-30 10:30 portfolio_backup/public/',
+    '-rw-r--r-- angga/angga      1234 2024-12-30 10:30 portfolio_backup/public/resume.pdf',
+    'drwxr-xr-x angga/angga         0 2024-12-30 10:30 portfolio_backup/.git/',
+    '-rw-r--r-- angga/angga       567 2024-12-30 10:30 portfolio_backup/package.json',
+    '-rw-r--r-- angga/angga       890 2024-12-30 10:30 portfolio_backup/README.md',
+    '',
+    'angga@ubuntu-wsl:~/documents$ ls -la backup.tar.gz',
+    '-rw-r--r-- 1 angga angga 2048576 Dec 30 10:30 backup.tar.gz',
+    '',
+    'angga@ubuntu-wsl:~/documents$ file backup.tar.gz',
+    'backup.tar.gz: gzip compressed data, from Unix, last modified: Dec 30 10:30:00 2024',
+    '',
+    'angga@ubuntu-wsl:~/documents$ md5sum backup.tar.gz',
+    'a1b2c3d4e5f678901234567890123456  backup.tar.gz',
+    '',
+    'angga@ubuntu-wsl:~/documents$ du -h backup.tar.gz',
+    '2.0M    backup.tar.gz',
+    '',
+    'angga@ubuntu-wsl:~/documents$ tar -tzf backup.tar.gz | head -10',
+    'portfolio_backup/',
+    'portfolio_backup/src/',
+    'portfolio_backup/src/app/',
+    'portfolio_backup/src/app/page.jsx',
+    'portfolio_backup/public/',
+    'portfolio_backup/public/resume.pdf',
+    'portfolio_backup/.git/',
+    'portfolio_backup/package.json',
+  ];
+
+  return (
+    <div className="bg-[#282828] rounded-lg overflow-hidden border border-[#3c3836]">
+      <div className="bg-[#3c3836] px-2 md:px-4 py-2 border-b border-[#504945]">
+        <div className="flex items-center gap-2">
+          <span className="text-[#fb4934]">●</span>
+          <span className="text-[#ebdbb2] text-xs md:text-sm font-mono">📦 backup.tar.gz</span>
+          <span className="text-[#928374] text-xs">[ARCHIVE]</span>
+        </div>
+      </div>
+      
+      <div className="bg-[#282828] text-[#ebdbb2] p-2 md:p-4 text-xs md:text-sm font-mono">
+        {backupContent.map((line, i) => (
+          <div key={i} className="leading-4 md:leading-5">
+            {line.includes('$') ? (
+              <span>
+                <span className="text-[#b8bb26]">{line.split('$')[0]}</span>
+                <span className="text-[#ebdbb2]">$</span>
+                <span className="text-[#83a598]">{line.split('$')[1]}</span>
+              </span>
+            ) : line.includes('drwx') || line.includes('-rw-') ? (
+              <span>
+                <span className="text-[#83a598]">{line.split(' ')[0]}</span>
+                <span className="text-[#ebdbb2]"> {line.split(' ').slice(1).join(' ')}</span>
+              </span>
+            ) : line.includes('backup.tar.gz') ? (
+              <span>
+                <span className="text-[#fabd2f]">{line}</span>
+              </span>
+            ) : (
+              <span className="text-[#a89984]">{line}</span>
+            )}
+          </div>
+        ))}
+        
+        <div className="mt-4">
+          <span className="text-[#b8bb26]">angga@ubuntu-wsl</span>
+          <span className="text-[#ebdbb2]">:</span>
+          <span className="text-[#83a598]">~/documents</span>
+          <span className="text-[#ebdbb2]">$ </span>
+          <span className="text-[#ebdbb2] animate-pulse">_</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Portfolio() {
   // Add viewport meta tag for mobile responsiveness
   React.useEffect(() => {
@@ -597,7 +1127,12 @@ export default function Portfolio() {
       "projects": "projects.md",
       "education": "education.py", 
       "blog": "blog.sh",
-      "certs": "certs.json"
+      "certs": "certs.json",
+      "resume": "resume.pdf",
+      "init.lua": "init.lua",
+      "plugins.lua": "plugins.lua",
+      "keymaps.lua": "keymaps.lua",
+      "backup.tar.gz": "backup.tar.gz"
     };
     return fileMap[tabName] || "about.rs";
   };
@@ -650,6 +1185,11 @@ export default function Portfolio() {
             else if (file === "education.py") setTab("education");
             else if (file === "blog.sh") setTab("blog");
             else if (file === "certs.json") setTab("certs");
+            else if (file === "resume.pdf") setTab("resume");
+            else if (file === "init.lua") setTab("init.lua");
+            else if (file === "plugins.lua") setTab("plugins.lua");
+            else if (file === "keymaps.lua") setTab("keymaps.lua");
+            else if (file === "backup.tar.gz") setTab("backup.tar.gz");
           }} 
         />
 
@@ -657,7 +1197,7 @@ export default function Portfolio() {
         <div className="flex-1 flex flex-col overflow-hidden w-full md:w-auto">
           {/* Buffer tabs - FIXED TIDAK SCROLL */}
           <div className="bg-[#3c3836] border-b border-[#504945] flex flex-shrink-0 overflow-x-auto">
-            {["about", "projects", "education", "blog", "certs"].map((tabName) => {
+            {["about", "projects", "education", "blog", "certs", "resume", "init.lua", "plugins.lua", "keymaps.lua", "backup.tar.gz"].map((tabName) => {
               const isActive = tab === tabName;
               const fileName = getFileFromTab(tabName);
               const getIcon = (name) => {
@@ -666,6 +1206,8 @@ export default function Portfolio() {
                 if (name.includes('.py')) return '🐍';
                 if (name.includes('.sh')) return '💲';
                 if (name.includes('.json')) return '📜';
+                if (name.includes('.lua')) return '🌙';
+                if (name.includes('.tar.gz')) return '📦';
                 return '📄';
               };
               
@@ -691,6 +1233,10 @@ export default function Portfolio() {
           {/* Content area - HANYA INI YANG SCROLL */}
           <div className="flex-1 bg-[#282828] p-2 md:p-4 overflow-y-auto">
             {tab === "about" && <RustCodeBlock mode={mode} />}
+            {tab === "init.lua" && <LuaCodeBlock mode={mode} />}
+            {tab === "plugins.lua" && <PluginsCodeBlock mode={mode} />}
+            {tab === "keymaps.lua" && <KeymapsCodeBlock mode={mode} />}
+            {tab === "backup.tar.gz" && <BackupFileViewer mode={mode} />}
             
             {tab === "education" && (
               <div className="space-y-6">
@@ -959,6 +1505,59 @@ export default function Portfolio() {
               </pre>
             </div>
           )}
+          
+          {tab === "resume" && (
+            <div className="bg-[#282828] rounded-lg overflow-hidden border border-[#3c3836]">
+              {/* PDF Viewer Header */}
+              <div className="bg-[#3c3836] px-4 py-2 border-b border-[#504945]">
+                <div className="flex items-center gap-2">
+                  <span className="text-[#fb4934]">●</span>
+                  <span className="text-[#ebdbb2] text-sm font-mono">📄 resume.pdf</span>
+                  <span className="text-[#928374] text-xs">[PDF]</span>
+                </div>
+              </div>
+              
+              {/* PDF Viewer Content */}
+              <div className="bg-[#1d2021] p-2 md:p-4 flex-1 min-h-0">
+                <div className="bg-white mx-auto max-w-full md:max-w-[210mm] shadow-lg rounded-lg overflow-hidden h-full">
+                  {/* PDF iframe */}
+                  <object
+                    data="/resume.pdf#toolbar=1&navpanes=1&scrollbar=1"
+                    type="application/pdf"
+                    width="100%"
+                    height="100%"
+                    className="border-none block min-h-[600px]"
+                    title="Resume PDF"
+                  >
+                    <iframe
+                      src="/resume.pdf#toolbar=1&navpanes=1&scrollbar=1"
+                      width="100%"
+                      height="100%"
+                      className="border-none block min-h-[600px]"
+                      title="Resume PDF"
+                    />
+                  </object>
+                </div>
+              </div>
+              
+              {/* PDF Viewer Footer */}
+              <div className="bg-[#3c3836] px-4 py-2 border-t border-[#504945]">
+                <div className="flex items-center justify-between text-xs text-[#928374]">
+                  <div className="flex items-center gap-4">
+                    <span>📄 PDF Document</span>
+                    <span>•</span>
+                    <span>Size: 144KB</span>
+                    <span>•</span>
+                    <span>Modified: Dec 30, 2024</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#b8bb26]">✓</span>
+                    <span>Loaded successfully</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
           {/* Status line - FIXED TIDAK SCROLL */}
@@ -999,6 +1598,11 @@ export default function Portfolio() {
                     else if (fileName.includes('education.py')) setTab('education');
                     else if (fileName.includes('blog.sh')) setTab('blog');
                     else if (fileName.includes('certs.json')) setTab('certs');
+                    else if (fileName.includes('resume.pdf')) setTab('resume');
+                    else if (fileName.includes('init.lua')) setTab('init.lua');
+                    else if (fileName.includes('plugins.lua')) setTab('plugins.lua');
+                    else if (fileName.includes('keymaps.lua')) setTab('keymaps.lua');
+                    else if (fileName.includes('backup.tar.gz')) setTab('backup.tar.gz');
                   }
                   setShowCommandLine(false);
                   setMode("NORMAL");
