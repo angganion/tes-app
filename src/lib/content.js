@@ -31,10 +31,13 @@ function markdownToHtml(markdown) {
   let paragraph = [];
   let list = false;
   let code = false;
+  let table = null;
 
   const flushParagraph = () => {
     if (paragraph.length) {
-      html.push(`<p>${paragraph.map(inlineMarkdown).join(" ")}</p>`);
+      // Join lines first so inline formatting (bold, code, links) can span
+      // line breaks inside a paragraph, then process inline markdown once.
+      html.push(`<p>${inlineMarkdown(paragraph.join(" "))}</p>`);
       paragraph = [];
     }
   };
@@ -46,10 +49,44 @@ function markdownToHtml(markdown) {
     }
   };
 
-  for (const line of markdown.split("\n")) {
+  const splitRow = (line) =>
+    line
+      .trim()
+      .replace(/^\|/, "")
+      .replace(/\|$/, "")
+      .split("|")
+      .map((cell) => cell.trim());
+
+  const isDelimiterRow = (line) => /^\s*\|?[\s:|-]+\|?\s*$/.test(line) && line.includes("-");
+
+  const renderTable = () => {
+    if (!table) return;
+    const [header, ...rows] = table.rows;
+    html.push("<table>");
+    if (header) {
+      html.push(
+        `<thead><tr>${header.map((cell) => `<th>${inlineMarkdown(cell)}</th>`).join("")}</tr></thead>`,
+      );
+    }
+    if (rows.length) {
+      html.push(
+        `<tbody>${rows
+          .map((row) => `<tr>${row.map((cell) => `<td>${inlineMarkdown(cell)}</td>`).join("")}</tr>`)
+          .join("")}</tbody>`,
+      );
+    }
+    html.push("</table>");
+    table = null;
+  };
+
+  const lines = markdown.split("\n");
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
     if (line.startsWith("```")) {
       flushParagraph();
       closeList();
+      renderTable();
       html.push(
         code
           ? "</code></pre>"
@@ -67,8 +104,24 @@ function markdownToHtml(markdown) {
     if (!line.trim()) {
       flushParagraph();
       closeList();
+      renderTable();
       continue;
     }
+
+    // Table block: header row, delimiter row, then body rows.
+    const nextLine = lines[i + 1] || "";
+    if (!table && /^\s*\|/.test(line) && isDelimiterRow(nextLine)) {
+      table = { rows: [splitRow(line)] };
+      continue;
+    }
+    if (table && isDelimiterRow(line)) {
+      continue;
+    }
+    if (table && /^\s*\|/.test(line)) {
+      table.rows.push(splitRow(line));
+      continue;
+    }
+    renderTable();
 
     const heading = line.match(/^(#{1,3})\s+(.+)$/);
     if (heading) {
@@ -95,13 +148,18 @@ function markdownToHtml(markdown) {
 
   flushParagraph();
   closeList();
+  renderTable();
   if (code) html.push("</code></pre>");
   return html.join("");
 }
 
 function parseDocument(filePath) {
   const source = fs.readFileSync(filePath, "utf8").replace(/\r/g, "");
-  const [, rawMeta = "", markdown = source] = source.split("---");
+  const frontmatterMatch = source.match(/^---\n([\s\S]*?)\n---\n?/);
+  const rawMeta = frontmatterMatch ? frontmatterMatch[1] : "";
+  const markdown = frontmatterMatch
+    ? source.slice(frontmatterMatch[0].length)
+    : source;
   const meta = Object.fromEntries(
     rawMeta
       .trim()

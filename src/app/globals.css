@@ -11,7 +11,7 @@
   --cyan: #72e3ed;
   --display: "Iowan Old Style", "Baskerville", "Palatino Linotype", Georgia, serif;
   --sans: Inter, "Avenir Next", "Segoe UI", Arial, sans-serif;
-  --mono: "Courier New", monospace;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 * {
@@ -580,14 +580,59 @@ h1 span {
   line-height: 1.85;
 }
 
+.detail-article ul {
+  padding-left: 22px;
+  margin: 8px 0 20px;
+}
+
 .detail-article li::marker {
   color: var(--muted);
+}
+
+.detail-article table {
+  width: 100%;
+  margin: 18px 0 26px;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.detail-article th,
+.detail-article td {
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid var(--line);
+}
+
+.detail-article th {
+  font-weight: 600;
+  background: #efefe9;
+}
+
+.detail-article table code {
+  font-size: 13px;
 }
 
 .detail-article code {
   padding: 2px 5px;
   color: var(--ink);
   background: #deded9;
+}
+
+.detail-article pre {
+  overflow-x: auto;
+  padding: 14px 16px;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.7;
+  background: #deded9;
+  white-space: pre;
+}
+
+.detail-article pre code {
+  padding: 0;
+  background: none;
 }
 
 .detail-article a {
@@ -1309,6 +1354,40 @@ body {
   background: var(--blue);
   color: var(--bg);
   transform: rotate(-1.3deg) translateY(-5px);
+}
+
+.note-row:nth-child(4) {
+  grid-column: 4 / 13;
+  background: var(--red);
+  transform: rotate(0.8deg) translateY(-8px);
+}
+
+.note-row:nth-child(5) {
+  grid-column: 1 / 12;
+  background: var(--cyan);
+  transform: rotate(-0.9deg) translateY(-4px);
+}
+
+.note-row:nth-child(n) {
+  margin-bottom: 0;
+}
+
+.note-row:nth-child(4) .eyebrow,
+.note-row:nth-child(4) h3,
+.note-row:nth-child(4) p,
+.note-row:nth-child(4) a,
+.note-row:nth-child(4) .row-number {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.note-row:nth-child(5) .eyebrow,
+.note-row:nth-child(5) h3,
+.note-row:nth-child(5) p,
+.note-row:nth-child(5) a,
+.note-row:nth-child(5) .row-number {
+  color: var(--ink);
+  border-color: var(--ink);
 }
 
 .note-row:nth-child(3) .eyebrow,

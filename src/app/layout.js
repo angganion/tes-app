@@ -5,6 +5,11 @@ export const metadata = {
   description: "Portfolio and field notes of Wahyu Ridho Anggoro, an Information Systems engineer focused on backend systems, data, and smart contracts.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
