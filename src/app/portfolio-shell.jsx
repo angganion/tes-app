@@ -17,8 +17,6 @@ const education = {
   institution: "Universitas Indonesia",
   degree: "B.S. in Information Systems",
   period: "Aug 2022 — Jul 2026",
-  gpa: "3.67 / 4.00",
-  thesis: "Design of an Upgradeable Smart Contract for Real Estate Tokenization with Transfer Restrictions Based on KYC Verification Status",
 };
 
 const experiences = [
@@ -96,7 +94,7 @@ export default function PortfolioShell({ projects, posts }) {
               <h1>Wahyu <em>Ridho</em><br />Anggoro<span>.</span></h1>
             </div>
             <div className="profile-lede">
-              <p>Information Systems student and backend-focused engineer with experience building internal platforms, microservices, computer vision systems, and blockchain applications.</p>
+              <p>Backend engineer transitioning into data engineering. Experienced building internal platforms, microservices, and data pipelines, and now focused on advanced SQL, Airflow orchestration, and ETL/ELT workflows.</p>
               <div className="contact-links">
                 <a href={`mailto:${profile.email}`}>{profile.email} <Arrow /></a>
                 <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <Arrow /></a>
@@ -110,11 +108,6 @@ export default function PortfolioShell({ projects, posts }) {
                 <p className="eyebrow">Education</p>
                 <h2>{education.institution}</h2>
                 <p>{education.degree}<br />{education.period}</p>
-                <strong>GPA {education.gpa}</strong>
-              </div>
-              <div className="thesis-copy">
-                <p className="eyebrow">Undergraduate thesis</p>
-                <p>{education.thesis}</p>
               </div>
             </div>
           </section>

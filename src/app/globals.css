@@ -276,26 +276,6 @@ h1 span {
   line-height: 1;
 }
 
-.education-copy strong {
-  display: block;
-  margin-top: 15px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 400;
-}
-
-.thesis-copy {
-  padding-left: 25px;
-  border-left: 1px solid var(--line);
-}
-
-.thesis-copy p:last-child {
-  color: var(--ink);
-  font-family: var(--display);
-  font-size: 17px;
-  line-height: 1.35;
-}
-
 .section-intro {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -614,6 +594,102 @@ h1 span {
   font-size: 13px;
 }
 
+/* PDF-style SQL tables: no column lines, dark highlighted code in "How to use" */
+.detail-article table.sql-table {
+  table-layout: fixed;
+  border: none;
+  margin: 24px 0 34px;
+  width: calc(100% + 120px);
+  margin-left: -60px;
+}
+
+/* In posts with SQL tables, align section headings and note boxes
+   with the full-bleed tables. */
+.detail-article:has(table.sql-table) h2,
+.detail-article:has(table.sql-table) h3,
+.detail-article:has(table.sql-table) .sql-note {
+  margin-left: -60px;
+}
+
+@media (max-width: 700px) {
+  .detail-article table.sql-table {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+  }
+
+  .detail-article:has(table.sql-table) h2,
+  .detail-article:has(table.sql-table) h3,
+  .detail-article:has(table.sql-table) .sql-note {
+    margin-left: -20px;
+  }
+}
+
+.detail-article table.sql-table th,
+.detail-article table.sql-table td {
+  border: none;
+}
+
+.detail-article table.sql-table thead th {
+  background: transparent;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 6px 12px 12px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.detail-article table.sql-table tbody td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #d6d3c9;
+}
+
+.detail-article table.sql-table th:first-child,
+.detail-article table.sql-table td:first-child {
+  width: 14%;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.detail-article table.sql-table th:nth-child(2),
+.detail-article table.sql-table td.sql-how {
+  width: 64%;
+}
+
+.detail-article table.sql-table th:nth-child(3),
+.detail-article table.sql-table td:not(.sql-how):not(:first-child) {
+  width: 24%;
+}
+
+.detail-article table.sql-table td:not(.sql-how):not(:first-child) {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.detail-article table.sql-table td.sql-how code {
+  display: block;
+  padding: 10px 12px;
+  background: #141414;
+  color: #e8e8e4;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.detail-article table.sql-pair th:first-child {
+  width: 50%;
+  color: var(--red);
+}
+
+.detail-article table.sql-pair td.sql-how {
+  width: 50%;
+}
+
 .detail-article code {
   padding: 2px 5px;
   color: var(--ink);
@@ -622,17 +698,63 @@ h1 span {
 
 .detail-article pre {
   overflow-x: auto;
+  margin: 18px 0 26px;
   padding: 14px 16px;
   font-family: var(--mono);
   font-size: 13px;
   line-height: 1.7;
-  background: #deded9;
+  background: #141414;
+  color: #e8e8e4;
   white-space: pre;
 }
 
 .detail-article pre code {
   padding: 0;
   background: none;
+  color: inherit;
+}
+
+.detail-article .sql-block {
+  margin: 22px 0 30px;
+}
+
+.detail-article .sql-block pre {
+  margin: 0;
+}
+
+.detail-article .sql-label {
+  display: inline-block;
+  padding: 5px 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #d7d2c8;
+  color: #111111;
+  border: 1px solid #111111;
+  border-bottom: none;
+}
+
+.sql-kw { color: #7db3ff; font-weight: 600; }
+.sql-fn { color: #b7a6ff; }
+.sql-str { color: #9be58c; }
+.sql-num { color: #ffb86c; }
+.sql-cmt { color: #7a7a76; font-style: italic; }
+
+.detail-article aside.sql-note {
+  margin: 18px 0 26px;
+  padding: 12px 16px;
+  border: 1px solid #e0c96b;
+  border-left: 4px solid #e0c96b;
+  background: #fbf3d3;
+  color: #4c4c4c;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.detail-article aside.sql-note code {
+  background: rgba(17, 17, 17, 0.08);
 }
 
 .detail-article a {
@@ -746,7 +868,6 @@ h1 span {
     margin-top: 35px;
   }
 
-  .thesis-copy,
   .award-copy {
     padding: 0;
     border-top: 1px solid var(--line);
@@ -883,10 +1004,6 @@ body {
 
 .education-copy h2 {
   font-size: 28px;
-}
-
-.thesis-copy p:last-child {
-  font-size: 19px;
 }
 
 .tag-line {
@@ -1139,10 +1256,6 @@ body {
   transform: rotate(4deg);
 }
 
-.thesis-copy {
-  border-left-color: var(--ink);
-}
-
 .section-intro {
   position: relative;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -1343,67 +1456,84 @@ body {
   transform: rotate(-0.7deg);
 }
 
-.note-row:nth-child(2) {
+/* Zigzag positions: alternate left/right every card, any post count */
+.note-row:nth-child(4n + 1) {
+  grid-column: 1 / 11;
+  transform: rotate(-0.7deg);
+}
+
+.note-row:nth-child(4n + 2) {
   grid-column: 3 / 13;
-  background: var(--acid);
   transform: rotate(1.1deg) translateY(-10px);
 }
 
-.note-row:nth-child(3) {
+.note-row:nth-child(4n + 3) {
   grid-column: 1 / 10;
-  background: var(--blue);
-  color: var(--bg);
   transform: rotate(-1.3deg) translateY(-5px);
 }
 
-.note-row:nth-child(4) {
+.note-row:nth-child(4n + 4) {
   grid-column: 4 / 13;
-  background: var(--red);
   transform: rotate(0.8deg) translateY(-8px);
 }
 
-.note-row:nth-child(5) {
-  grid-column: 1 / 12;
+/* Colors: 5-color cycle, repeats for any post count */
+.note-row:nth-child(5n + 1) {
+  background: var(--bg);
+}
+
+.note-row:nth-child(5n + 2) {
+  background: var(--acid);
+}
+
+.note-row:nth-child(5n + 3) {
+  background: var(--blue);
+}
+
+.note-row:nth-child(5n + 4) {
+  background: var(--red);
+}
+
+.note-row:nth-child(5n + 5) {
   background: var(--cyan);
-  transform: rotate(-0.9deg) translateY(-4px);
 }
 
 .note-row:nth-child(n) {
   margin-bottom: 0;
 }
 
-.note-row:nth-child(4) .eyebrow,
-.note-row:nth-child(4) h3,
-.note-row:nth-child(4) p,
-.note-row:nth-child(4) a,
-.note-row:nth-child(4) .row-number {
+.note-row:nth-child(5n + 4) .eyebrow,
+.note-row:nth-child(5n + 4) h3,
+.note-row:nth-child(5n + 4) p,
+.note-row:nth-child(5n + 4) a,
+.note-row:nth-child(5n + 4) .row-number {
   color: var(--ink);
   border-color: var(--ink);
 }
 
-.note-row:nth-child(5) .eyebrow,
-.note-row:nth-child(5) h3,
-.note-row:nth-child(5) p,
-.note-row:nth-child(5) a,
-.note-row:nth-child(5) .row-number {
+.note-row:nth-child(5n + 5) .eyebrow,
+.note-row:nth-child(5n + 5) h3,
+.note-row:nth-child(5n + 5) p,
+.note-row:nth-child(5n + 5) a,
+.note-row:nth-child(5n + 5) .row-number {
   color: var(--ink);
   border-color: var(--ink);
 }
 
-.note-row:nth-child(3) .eyebrow,
-.note-row:nth-child(3) h3,
-.note-row:nth-child(3) p,
-.note-row:nth-child(3) a,
-.note-row:nth-child(3) .row-number {
+.note-row:nth-child(5n + 3) .eyebrow,
+.note-row:nth-child(5n + 3) h3,
+.note-row:nth-child(5n + 3) p,
+.note-row:nth-child(5n + 3) a,
+.note-row:nth-child(5n + 3) .row-number {
   color: var(--bg);
   border-color: var(--bg);
 }
 
-.note-row:nth-child(2) .eyebrow,
-.note-row:nth-child(2) h3,
-.note-row:nth-child(2) p,
-.note-row:nth-child(2) a,
-.note-row:nth-child(2) .row-number {
+.note-row:nth-child(5n + 2) .eyebrow,
+.note-row:nth-child(5n + 2) h3,
+.note-row:nth-child(5n + 2) p,
+.note-row:nth-child(5n + 2) a,
+.note-row:nth-child(5n + 2) .row-number {
   color: var(--ink);
   border-color: var(--ink);
 }
@@ -1490,12 +1620,6 @@ body {
 
   .profile-lower > div + div {
     margin-top: 35px;
-  }
-
-  .thesis-copy {
-    padding-top: 20px;
-    border-top: 1px solid var(--ink);
-    border-left: 0;
   }
 
   .section-intro {
